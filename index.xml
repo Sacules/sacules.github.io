@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>anothergeek</title>
+    <link>https://example.org/</link>
+    <description>Recent content on anothergeek</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Aug 2018 03:52:16 -0300</lastBuildDate>
+    
+	<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://example.org/about/</link>
+      <pubDate>Sun, 05 Aug 2018 03:52:16 -0300</pubDate>
+      
+      <guid>https://example.org/about/</guid>
+      <description> Waves are the practice of the water. Shunryu Suzuki
+ </description>
+    </item>
+    
+    <item>
+      <title>Showcase</title>
+      <link>https://example.org/showcase/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/showcase/</guid>
+      <description>Header 2 Backup two-step verification breach, anonymous terminal traffic worm virus reboot fsociety dat file. Traffic fsociety malware 100 terabytes system hack, delete brute-force cyber security fiber connection connect code worm wipe. Cyber security off the grid delete IP decrypt, nodes connect password 100 terabytes RUDY attack malicious code rootkit gigabit speed. Tor connect network, intercepting traffic off the grid IP protocol password.
+ Backup DDoS attack rootkit nodes disconnect website.</description>
+    </item>
+    
+  </channel>
+</rss>
