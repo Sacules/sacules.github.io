@@ -23,10 +23,10 @@
     
     <item>
       <title>How to dwm</title>
-      <link>https://sacules.github.io/linux/how-to-dwm/</link>
+      <link>https://sacules.github.io/post/linux/how-to-dwm/</link>
       <pubDate>Sun, 05 Aug 2018 03:00:42 -0300</pubDate>
       
-      <guid>https://sacules.github.io/linux/how-to-dwm/</guid>
+      <guid>https://sacules.github.io/post/linux/how-to-dwm/</guid>
       <description>My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.
 Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in.</description>
     </item>
