@@ -156,24 +156,18 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 <p>The easiest part: colors are defined as strings, using an RGB format, and are arrays of characters.</p>
 
-<pre>
-    <code class="language-c">
-static const char normbordercolor[] = "#393f45";
-    </code>
-</pre>
+<pre><code class="language-c">static const char normbordercolor[] = &quot;#393f45&quot;;
+</code></pre>
 
 <p>The name doesn&rsquo;t matter, and you can have a many colors defined as you like. What&rsquo;s important is where you put them on the colors array:</p>
 
-<pre>
-    <code class="language-c">
-static const char *colors[][3]      = {
-    /*               fg         bg         border   */
+<pre><code class="language-c">static const char *colors[][3]      = {
+	/*               fg         bg         border   */
     [SchemeNorm] = { normfgcolor,   normbgcolor,   normbordercolor, },
     [SchemeSel]  = { selfgcolor,    selbgcolor,    selbordercolor , },
-    [SchemeUrg] =  { urgfgcolor,    urgbgcolor,    urgbordercolor },
+	[SchemeUrg] =  { urgfgcolor,    urgbgcolor,    urgbordercolor },
 };
-    </code>
-</pre>
+</code></pre>
 
 <p>Let me explain what each of these means:</p>
 
@@ -189,11 +183,8 @@ static const char *colors[][3]      = {
 
 <p>dwm has this very cool feature called <strong>font fallback</strong> which allows you to define several fonts, and if the first one can&rsquo;t display a character correctly, then dwm will try to  use the following font, and so on. This could be useful if you have a font that doesn&rsquo;t support glyphs or unicode characters, but still want to be able to display them.</p>
 
-<pre>
-    <code class="language-c">
-static const char *fonts[] = { "SauceCodePro Nerd Font:size=9:width=1" };
-    </code>
-</pre>
+<pre><code class="language-c">static const char *fonts[] = { &quot;SauceCodePro Nerd Font:size=9:width=1&quot; };
+</code></pre>
 
 <p>I&rsquo;ve also seen that some people have had performance issues with some of the <a href="link">Nerd Fonts</a>, and this method has allowed them to prevent that. Haven&rsquo;t had such problems so ended up putting just one font.</p>
 
@@ -201,29 +192,23 @@ static const char *fonts[] = { "SauceCodePro Nerd Font:size=9:width=1" };
 
 <p>Similarly to the concept of several workspaces, dwm incorporates tags, which are like tabs were you can put your windows in. What&rsquo;s interesting tho, is the ability of combining several of these tags - that is, displaying the windows of several at once. By default, they&rsquo;re named from 1 to 9, but you can change that for any text or unicode icon you like - I think there&rsquo;s no minimum beyond 1 tag, but I&rsquo;m not sure if there&rsquo;s a limit of how many dwm can deal with.</p>
 
-<pre>
-    <code class="language-c">
-static const char *tags[] = { "", "", "", "", "" };
-    </code>
-</pre>
+<pre><code class="language-c">static const char *tags[] = { &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot; };
+</code></pre>
 
 <h1 id="rules">Rules</h1>
 
 <p>We can also define how certain programs will behave - this is handy to quickly set up the ones we use a lot, and be certain that, for example, Firefox will always open on the fourth tag of our third monitor and will always be floating no matter what.</p>
 
-<pre>
-    <code class="language-c">
-static const Rule rules[] = {
-    /* xprop(1):
-     *  WM_CLASS(STRING) = instance, class
-     *  WM_NAME(STRING) = title
-     */
-    /* class      instance    title       tags mask     isfloating   monitor */
-    { "Gimp",     NULL,       NULL,       0,            1,           -1 },
-    { "Firefox",  NULL,       NULL,       0,            0,           -1 },
+<pre><code class="language-c">static const Rule rules[] = {
+	/* xprop(1):
+	 *	WM_CLASS(STRING) = instance, class
+	 *	WM_NAME(STRING) = title
+	 */
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ &quot;Gimp&quot;,     NULL,       NULL,       0,            1,           -1 },
+	{ &quot;Firefox&quot;,  NULL,       NULL,       0,       		0,           -1 },
 };
-    </code>
-</pre>
+</code></pre>
 
 <p>A far more detailed explanation of how rules work can be found <a href="https://dwm.suckless.org/customisation/rules/">here</a>.</p>
 
@@ -231,19 +216,16 @@ static const Rule rules[] = {
 
 <p>This is just a list of all the layouts we have, the first three the default ones dwm includes, and the rest, the ones we can add by patching. Since they&rsquo;re represented with a string, we can change that to a nice unicode character.</p>
 
-<pre>
-    <code class="language-c">
-static const Layout layouts[] = {
-    /* symbol       arrange function */
-    { "ﴳ",       tile },    /* first entry is default */
-    { "缾",      NULL },    /* no layout function means floating behavior */
-    { "类",      monocle },
-    { "ﰀ",      bstack },
-    { "",      bstackhoriz },
-    { "",      clean },
+<pre><code class="language-c">static const Layout layouts[] = {
+	/* symbol       arrange function */
+	{ &quot;ﴳ&quot;,       tile },    /* first entry is default */
+	{ &quot;缾&quot;,      NULL },    /* no layout function means floating behavior */
+	{ &quot;类&quot;,      monocle },
+	{ &quot;ﰀ&quot;,      bstack },
+	{ &quot;&quot;,      bstackhoriz },
+    { &quot;&quot;,      clean },
 };
-    </code>
-</pre>
+</code></pre>
 
 <h1 id="keybindings-and-custom-commands">Keybindings and custom commands</h1>
 
@@ -251,16 +233,8 @@ static const Layout layouts[] = {
 
 <p>First, we define our command as a pointer to an array of strings, give it the name we want, and give each flag and parameter it&rsquo;s own place. Finally, we add a <code>NULL</code> at the end to indicate that there are no more commands left. For example, I&rsquo;ve created this to allow me to rise the volume.</p>
 
-<pre>
-    <code class="language-c">
-static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", NULL };
-    </code>
-</pre>
-
 <pre><code class="language-c">static const char *volupcmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%+&quot;, NULL };
 </code></pre>
-
-<p>nice</p>
 
     </div>
     
