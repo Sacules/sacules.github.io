@@ -20,8 +20,8 @@
 
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-<link rel="shortcut icon" href="img/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
 
 
 <meta name="twitter:card" content="summary" />
@@ -52,7 +52,7 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 
 </head>
-<body>
+<body class="dark-theme">
 <div class="container">
   <header class="header">
   <span class="header__inner">
@@ -65,6 +65,7 @@ Since I had no clue on how to patch it, found an interesting fork on github that
     
   </div>
 </a>
+
     <span class="header__right">
       
         <nav class="menu">
@@ -119,6 +120,8 @@ Since I had no clue on how to patch it, found an interesting fork on github that
         
           #<a href="https://sacules.github.io/tags/simple">Simple</a>&nbsp;
         
+          #<a href="https://sacules.github.io/tags/ricing">Ricing</a>&nbsp;
+        
       </span>
     
 
@@ -133,7 +136,7 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 <p>Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in. Some months later I got tired of it and chose to go all the way to patching dwm myself, and getting the settings I wanted.</p>
 
-<p>And there came the idea of documenting the process, albeit a little late, but better now before I forget the details. The following is a rough guide to patching and customizing dwm, and how to deal with some of the minor details. For a beginner&rsquo;s guide, see the excellent <a href="http://ratfactor.com/slackware/dwm/">Dave&rsquo;s Visual Guide to dwm</a>.</p>
+<p>And there came the idea of documenting the process, albeit a little late, but better now before I forget the details. The following is a rough guide to patching and customizing dwm, and how to deal with some of the minor details. For a beginner&rsquo;s guide on how to use dwm, see the excellent <a href="http://ratfactor.com/slackware/dwm/">Dave&rsquo;s Visual Guide to dwm</a>.</p>
 
 <p><strong>Notice</strong>: I&rsquo;m using the git version of dwm, which is slightly different and I recommend above the stable versions since it has several fixes.</p>
 
@@ -214,11 +217,11 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 <h1 id="layouts">Layouts</h1>
 
-<p>This is just a list of all the layouts we have, the first three the default ones dwm includes, and the rest, the ones we can add by patching. Since they&rsquo;re represented with a string, we can change that to a nice unicode character.</p>
+<p>This is just a list of all the layouts we have installed, the first three the default ones dwm includes, and the rest, the ones we can add by patching. Since they&rsquo;re represented with a string, we can change that to a nice unicode character like I&rsquo;ve done here.</p>
 
 <pre><code class="language-c">static const Layout layouts[] = {
 	/* symbol       arrange function */
-	{ &quot;ﴳ&quot;,       tile },    /* first entry is default */
+	{ &quot;ﴳ&quot;,      tile },    /* first entry is default */
 	{ &quot;缾&quot;,      NULL },    /* no layout function means floating behavior */
 	{ &quot;类&quot;,      monocle },
 	{ &quot;ﰀ&quot;,      bstack },
@@ -229,11 +232,27 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 <h1 id="keybindings-and-custom-commands">Keybindings and custom commands</h1>
 
-<p>Now this part was pretty straightforward and can be done on a vanilla dwm. Before going into the patches, I&rsquo;ll describe one of the most powerful customizations: keybindings. dwm can launch applications with flags and the like, and understanding how to add your own besides the default ones goes a long way to boot your <del>laziness</del> productivity.</p>
+<p>Before going into patching, I&rsquo;ll describe one of the most powerful customizations: keybindings. dwm can launch applications and use shell commands, and understanding how to add your own besides the default ones goes a long way to boost your <del>laziness</del> productivity.</p>
 
-<p>First, we define our command as a pointer to an array of strings, give it the name we want, and give each flag and parameter it&rsquo;s own place. Finally, we add a <code>NULL</code> at the end to indicate that there are no more commands left. For example, I&rsquo;ve created this to allow me to rise the volume.</p>
+<p>First, we define our command as a pointer to a static array of strings, giving each flag and parameter it&rsquo;s own place. Finally, we add <code>NULL</code> at the end to indicate that there are no more commands left. As an example, I&rsquo;ve created this to take screenshots.</p>
 
-<pre><code class="language-c">static const char *volupcmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%+&quot;, NULL };
+<pre><code class="language-c">static const char *scrotcmd[] = { &quot;scrot&quot;, &quot;--exec&quot;, &quot;mv -v $f ~/Pictures/Screenshots/&quot;, NULL };
+</code></pre>
+
+<p>Note that the third option here is a single parameter that you give to <code>scrot</code>, so it&rsquo;d normally look like this on the command line:</p>
+
+<pre><code class="language-console">$ scrot --exec 'mv -v $f ~/Pictures/Screenshots/'
+</code></pre>
+
+<p>Then, to be able to assign a keybinding to this new command, we go to the keys array, and at the bottom, we can add our own:</p>
+
+<pre><code class="language-c">static Key keys[] = {
+	/* modifier            key           function    argument */
+	{ MODKEY,              XK_p,         spawn,      {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,    XK_Return,    spawn,      {.v = termcmd } },
+    ...
+    /* custom */
+	{ False,               XK_Print,     spawn,      {.v = scrotcmd } },
 </code></pre>
 
     </div>
@@ -255,6 +274,7 @@ Since I had no clue on how to patch it, found an interesting fork on github that
     
   </div>
 </a>
+
       <div class="copyright">
         <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
         <span>Theme created by <a href="https://twitter.com/panr">panr</a> 2018</span>

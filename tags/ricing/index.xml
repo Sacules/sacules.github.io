@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ricing on kernelashes</title>
+    <link>https://sacules.github.io/tags/ricing/</link>
+    <description>Recent content in Ricing on kernelashes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Aug 2018 03:00:42 -0300</lastBuildDate>
+    
+	<atom:link href="https://sacules.github.io/tags/ricing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to dwm</title>
+      <link>https://sacules.github.io/post/how-to-dwm/</link>
+      <pubDate>Sun, 05 Aug 2018 03:00:42 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/post/how-to-dwm/</guid>
+      <description>My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.
+Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in.</description>
+    </item>
+    
+  </channel>
+</rss>
