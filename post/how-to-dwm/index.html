@@ -234,7 +234,14 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 
 <p>Before going into patching, I&rsquo;ll describe one of the most powerful customizations: keybindings. dwm can launch applications and use shell commands, and understanding how to add your own besides the default ones goes a long way to boost your <del>laziness</del> productivity.</p>
 
-<p>First, we define our command as a pointer to a static array of strings, giving each flag and parameter it&rsquo;s own place. Finally, we add <code>NULL</code> at the end to indicate that there are no more commands left. As an example, I&rsquo;ve created this to take screenshots.</p>
+<p>First, let&rsquo;s take a quick glance at the <code>MODKEY</code> thing that&rsquo;s defined here:</p>
+
+<pre><code class="language-c">#define MODKEY Mod1Mask
+</code></pre>
+
+<p>This is basically the main key when using dwm, over which we append others - for example, <code>MODKEY + i</code> moves the focus to another window, <code>MODKEY + f</code> changes the layout to floating, etc. This particular <code>MODKEY</code> is mapped to <code>Mod1</code>, which is the left <code>Alt</code> key. Since this one is often used by many programs, I changed it to the Windows key on my keyboard, which is <code>Mod4</code>.</p>
+
+<p>Now, let&rsquo;s dig at adding commands: we define our command as a pointer to a static array of strings, giving each flag and parameter it&rsquo;s own place. Finally, we add <code>NULL</code> at the end to indicate that there are no more commands left. As an example, I&rsquo;ve created this to take screenshots.</p>
 
 <pre><code class="language-c">static const char *scrotcmd[] = { &quot;scrot&quot;, &quot;--exec&quot;, &quot;mv -v $f ~/Pictures/Screenshots/&quot;, NULL };
 </code></pre>
@@ -254,6 +261,36 @@ Since I had no clue on how to patch it, found an interesting fork on github that
     /* custom */
 	{ False,               XK_Print,     spawn,      {.v = scrotcmd } },
 </code></pre>
+
+<p>A quick explanation of what&rsquo;s going on here:</p>
+
+<ul>
+<li>In the first column we have to tell dwm if we&rsquo;re using a modifier key plus another key like <code>Ctrl</code> or <code>Shift</code>. In our case we don&rsquo;t need any so we&rsquo;ll leave it as <code>False</code>.</li>
+<li>The following column is the actual key we want to press, in our case the <code>Imp Pnt</code> one. you can find a complete list of keys <a href="http://docs.piston.rs/mush/x11/keysym/">here</a>.</li>
+<li><code>function</code> calls one of dwm&rsquo;s functions, we&rsquo;re interested in the <code>spawn</code> one since it&rsquo;s used for shell commands.</li>
+<li>Lastly, we have to say what our command is! I&rsquo;ve got no clue of what the syntax exactly means on this case, so just go with <code>{.v = yourcommand }</code>.</li>
+</ul>
+
+<p>And that&rsquo;s pretty much it! But wait, what if I want to use those fancy buttons to lower/raise volume? Those keys are covered with another library, which we need to import at the beginning of our config:</p>
+
+<pre><code class="language-c">#include &lt;X11/XF86keysym.h&gt;
+</code></pre>
+
+<p>I use the following commands to adjust volume:</p>
+
+<pre><code class="language-c">static const char *volupcmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%+&quot;, NULL };
+static const char *voldncmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%-&quot;, NULL };
+</code></pre>
+
+<p>Now, when adding a keybinding, notice the different naming for they key:</p>
+
+<pre><code class="language-c">{ False,    XF86XK_AudioRaiseVolume,    spawn,    {.v = volupcmd } },
+{ False,    XF86XK_AudioLowerVolume,    spawn,    {.v = voldncmd } },
+</code></pre>
+
+<p>You can find more media keys <a href="http://docs.piston.rs/piston_window/x11_dl/keysym/index.html">here</a>.</p>
+
+<p>To finish this section, there&rsquo;s a part in the config about adding bindings to mouse buttons but I haven&rsquo;t got use for that so I can&rsquo;t guide you there.</p>
 
     </div>
     
