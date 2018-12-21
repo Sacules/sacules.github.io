@@ -110,7 +110,7 @@ Since I had no clue on how to patch it, found an interesting fork on github that
       <span class="post-date">
         2018-08-05
       </span>
-      <span class="post-author">Written by Sacul</span>
+      <span class="post-author">Written by Sacules</span>
     </div>
 
     
@@ -291,6 +291,90 @@ static const char *voldncmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&
 <p>You can find more media keys <a href="http://docs.piston.rs/piston_window/x11_dl/keysym/index.html">here</a>.</p>
 
 <p>To finish this section, there&rsquo;s a part in the config about adding bindings to mouse buttons but I haven&rsquo;t got use for that so I can&rsquo;t guide you there.</p>
+
+<h1 id="patches">Patches</h1>
+
+<p>This is one if the most interesting parts about the suckless project but also what detracts others away from their software: they implement the bare, minimum functionality in a very compact and simple way, and to add more, you have to use patches. These are usually made and mantained by the community and add plenty of interesting twists to the usual workflow. Many fear this approach due to potential conflicts, and they&rsquo;re partly right, but solving these is trivial in most cases I&rsquo;ve encountered. I&rsquo;ll quickly show how to add some simple patches and how to deal with conflicts.</p>
+
+<p>Let&rsquo;s begin with a simple patch, let&rsquo;s say you want to add the <strong>pertag</strong> patch. You simply do:</p>
+
+<pre><code class="language-console">$ patch -p1 &lt; dwm-pertag-20170513-ceac8c9.diff
+patching file dwm.c
+Hunk #1 succeeded at 111 (offset -1 lines).
+Hunk #2 succeeded at 131 (offset -1 lines).
+Hunk #3 succeeded at 273 (offset -1 lines).
+Hunk #4 succeeded at 642 (offset -1 lines).
+Hunk #5 succeeded at 653 (offset -1 lines).
+Hunk #6 succeeded at 992 (offset -2 lines).
+Hunk #7 succeeded at 1527 (offset -2 lines).
+Hunk #8 succeeded at 1548 (offset -2 lines).
+Hunk #9 succeeded at 1725 (offset -2 lines).
+Hunk #10 succeeded at 1764 (offset -2 lines).
+Hunk #11 succeeded at 2085 (offset -1 lines).
+</code></pre>
+
+<p>Easy and smooth! Now recompile dwm and you&rsquo;re ready to go. You&rsquo;ll see a new file was generated called <code>dwm.c.orig</code> - this is the original file from before we applied the patch. If everything works fine, you can safely delete it.</p>
+
+<p>Let&rsquo;s try to add more patches, say, new layouts like <strong>fibonacci</strong> and <strong>bottomstack</strong>. As before, we do:</p>
+
+<pre><code class="language-console">$ patch -p1 &lt; dwm-fibonacci-5.8.2.diff
+patching file config.def.h
+Hunk #1 succeeded at 39 (offset 10 lines).
+Hunk #2 succeeded at 45 (offset 10 lines).
+patching file fibonacci.c
+
+$ patch -p1 &lt; dwm-bottomstack-20160719-56a31dc.diff
+patching file config.def.h
+Hunk #1 FAILED at 41.
+Hunk #2 succeeded at 79 (offset 3 lines).
+1 out of 2 hunks FAILED -- saving rejects to file config.def.h.rej
+patching file dwm.c
+Hunk #1 succeeded at 235 (offset 1 line).
+Hunk #2 succeeded at 2225 (offset 85 lines).
+</code></pre>
+
+<p>Don&rsquo;t panic, this is usual - let&rsquo;s check what specific changes couldn&rsquo;t be applied. Checking the <code>config.def.h.rej</code> file we can see:</p>
+
+<pre><code class="language-diff">--- config.def.h
++++ config.def.h
+@@ -41,6 +41,8 @@ static const Layout layouts[] = {
+ 	{ &quot;[]=&quot;,      tile },    /* first entry is default */
+ 	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
+ 	{ &quot;[M]&quot;,      monocle },
++	{ &quot;TTT&quot;,      bstack },
++	{ &quot;===&quot;,      bstackhoriz },
+ };
+ 
+ /* key definitions */
+</code></pre>
+
+<p>The conflicts come from the patch expecting your code to look <em>exactly</em> like this, so let&rsquo;s see how that part of <code>config.def.h</code> actually looks like:</p>
+
+<pre><code class="language-c">    { &quot;[]=&quot;,      tile },    /* first entry is default */
+	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
+	{ &quot;[M]&quot;,      monocle },
+ 	{ &quot;[@]&quot;,      spiral },
+ 	{ &quot;[\\]&quot;,      dwindle },
+};
+
+/* key definitions */
+</code></pre>
+
+<p>Now it&rsquo;s obvious - it didn&rsquo;t expect those those new layouts we added before since the patch was probably made on a vanilla dwm. This is an easy fix, as we just need to paste the layouts we wanted to add, so it looks like this:</p>
+
+<pre><code class="language-c">    { &quot;[]=&quot;,      tile },    /* first entry is default */
+	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
+	{ &quot;[M]&quot;,      monocle },
+    { &quot;TTT&quot;,      bstack },
+	{ &quot;===&quot;,      bstackhoriz },
+ 	{ &quot;[@]&quot;,      spiral },
+ 	{ &quot;[\\]&quot;,      dwindle },
+};
+
+/* key definitions */
+</code></pre>
+
+<p>And that&rsquo;s pretty much the source of 90% of patch conflicts. There are some other weird cases that might pop up if you have some specific patches that want to modify a common part of the code for, say, drawing the status bar. And those are the tough ones if you are not familiar with C.</p>
 
     </div>
     
