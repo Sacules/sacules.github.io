@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://sacules.github.io/post/tui-go/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sacules.github.io/post/void-journey-i/</loc>
     <lastmod>2018-12-28T21:52:01-03:00</lastmod>
   </url>
@@ -23,14 +28,26 @@
   </url>
   
   <url>
+    <loc>https://sacules.github.io/tags/coding/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/go/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://sacules.github.io/categories/linux/</loc>
-    <lastmod>2018-12-28T21:52:01-03:00</lastmod>
+    <lastmod>2018-08-05T03:00:42-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://sacules.github.io/post/</loc>
-    <lastmod>2018-12-28T21:52:01-03:00</lastmod>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -48,7 +65,13 @@
   
   <url>
     <loc>https://sacules.github.io/tags/</loc>
-    <lastmod>2018-12-28T21:52:01-03:00</lastmod>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/tui/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
     <priority>0</priority>
   </url>
   

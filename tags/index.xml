@@ -6,10 +6,28 @@
     <description>Recent content in Tags on kernelashes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Dec 2018 21:52:01 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 11 Feb 2019 19:02:56 -0300</lastBuildDate>
     
 	<atom:link href="https://sacules.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Coding</title>
+      <link>https://sacules.github.io/tags/coding/</link>
+      <pubDate>Mon, 11 Feb 2019 19:02:56 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/tags/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://sacules.github.io/tags/go/</link>
+      <pubDate>Mon, 11 Feb 2019 19:02:56 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/tags/go/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ricing</title>
@@ -26,6 +44,15 @@
       <pubDate>Sun, 05 Aug 2018 03:00:42 -0300</pubDate>
       
       <guid>https://sacules.github.io/tags/suckless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tui</title>
+      <link>https://sacules.github.io/tags/tui/</link>
+      <pubDate>Mon, 11 Feb 2019 19:02:56 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/tags/tui/</guid>
       <description></description>
     </item>
     
