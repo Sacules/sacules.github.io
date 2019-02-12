@@ -145,7 +145,7 @@ And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Term
 
 <p>And in the process I&rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article. I plan this to be a series in which I&rsquo;ll try different TUI packages, build a small program with each, and give my thoughts on the wonders and limitations of each.</p>
 
-<p>Today we&rsquo;ll begin with the first one I&rsquo;ve used: tview. From its Github page:</p>
+<p>Today we&rsquo;ll begin with the first one I&rsquo;ve used: <code>tview</code>. From its Github page:</p>
 
 <pre><code class="language-markdown">This Go package provides commonly needed components for terminal based user interfaces.
 
@@ -163,7 +163,7 @@ Among these components are:
 They come with lots of customization options and can be easily extended to fit your needs.
 </code></pre>
 
-<p>It&rsquo;s based on the excellent and thorough tcell, and it&rsquo;s certainly customizable - I&rsquo;ve used it to build Index&rsquo;s interface:</p>
+<p>It&rsquo;s based on the excellent and thorough <code>tcell</code>, and it&rsquo;s certainly customizable - I&rsquo;ve used it to build Index&rsquo;s interface:</p>
 
 
   <figure class="center" >
@@ -189,7 +189,7 @@ They come with lots of customization options and can be easily extended to fit y
 
 <h2 id="basics">Basics</h2>
 
-<p>Now, let&rsquo;s take a quick look at how a typical TUI written with tview looks like:</p>
+<p>Now, let&rsquo;s take a quick look at how a typical TUI written with <code>tview</code> looks like:</p>
 
 <pre><code class="language-go">package main
 
@@ -236,7 +236,8 @@ func main() {
 
 <h2 id="connecting-widgets-to-actions">Connecting widgets to actions</h2>
 
-<p>If you&rsquo;ve worked with GTK, you&rsquo;ll be familiar with the concept of signals, and since Go has great support for first-class functions, we can do something similar in tview. Most widgets have a <code>SetSelectedFunc</code> method that will take a function as a parameter and execute it each time you select it. Such function can be defined properly or we can create an anonymous function right in the spot:</p>
+<p>If you&rsquo;ve worked with GTK, you&rsquo;ll be familiar with the concept of signals, and since Go has great support for first-class functions, we can do something similar in <code>tview</code>. Most widgets have a <code>SetSelectedFunc</code> method that will take a function as a parameter and execute it each time you select it. Such function can be defined properly or we can create an anonymous function right in the spot:
+It&rsquo;s based on the excellent and thorough tcell, and it&rsquo;s certainly customizable - I&rsquo;ve used it to build Index&rsquo;s interface:</p>
 
 <pre><code class="language-go">button.SetSelectedFunc(func() {
 		app.Stop()
@@ -249,7 +250,7 @@ func main() {
 
 <p>We can customize the bindings for either the whole application or a specific widget, but keep in mind that we cannot override the ones we set in the former with new ones in the latter, nor those that come as default in a more complex widget, like Form.</p>
 
-<p>Usually, tview stops the application when hitting <code>Ctrl-C</code>, but let&rsquo;s say we also want to assign <code>Esc</code> to that. For such, we have to import <code>tcell</code>, which will help us handle events from the keyboard, and call the application&rsquo;s <code>SetInputCapture</code> method with a function that receives these events, and acts on them.</p>
+<p>Usually, <code>tview</code> stops the application when hitting <code>Ctrl-C</code>, but let&rsquo;s say we also want to assign <code>Esc</code> to that. For such, we have to import <code>tcell</code>, which will help us handle events from the keyboard, and call the application&rsquo;s <code>SetInputCapture</code> method with a function that receives these events, and acts on them.</p>
 
 <pre><code class="language-go">app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyEsc {
