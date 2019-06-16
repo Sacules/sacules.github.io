@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://sacules.github.io/post/how-to-lemonbar/" />
+
+
+<link rel="stylesheet" href="https://sacules.github.io/assets/style.css">
+
+
+<link rel="stylesheet" href="https://sacules.github.io/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://sacules.github.io/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://sacules.github.io/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff" />
+<meta name="twitter:description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!" />
+<meta name="twitter:site" content="https://sacules.github.io/" />
+<meta name="twitter:creator" content="Sacules" />
+<meta name="twitter:image" content="https://sacules.github.io/img/lemonbar.png">
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff">
+<meta property="og:description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!" />
+<meta property="og:url" content="https://sacules.github.io/post/how-to-lemonbar/" />
+<meta property="og:site_name" content="How to Lemonbar" />
+<meta property="og:image" content="https://sacules.github.io/img/lemonbar.png">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2019-06-14 11:09:03 -0300 -03" />
+
+
+
+
+
+</head>
+<body class="dark-theme">
+<div class="container">
+  <header class="header">
+  <span class="header__inner">
+    <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">kernel_ashes</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about/">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about/">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+  <div class="content">
+    
+  <div class="post">
+    <h2 class="post-title"><a href="https://sacules.github.io/post/how-to-lemonbar/">How to Lemonbar</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-06-14
+        </span>
+      
+      <span class="post-author">— Written by Sacules</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://sacules.github.io/tags/ricing/">Ricing</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="https://sacules.github.io/img/lemonbar.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      
+
+<p>In the huge world of ricing, there are plenty of options when it comes
+to bars and panels, particularly for unix-like systems: <code>polybar</code>, <code>dzen</code>,
+<code>xfce-panel</code>, <code>tint2</code>, etc. In particular, <a href="https://github.com/LemonBoy/bar">lemonbar</a>
+is one of the most minimal ones, since it only requires text to be piped
+into it in order to display a bar. Thus getting useful information, like
+CPU usage or the current time, is left at the hands of the user - scripting
+time!</p>
+
+<p>However, due to lack of proper documentation on how to actually use the bar,
+I thought making an article describing my workflow and what I&rsquo;ve learned from
+reading others&rsquo; <del>messy</del> scripts, and exploring two different approaches.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>The simplest posible setting can be simply achieved by:</p>
+
+<pre><code class="language-shell">$ echo &quot;hello world&quot; | lemonbar
+</code></pre>
+
+<p>However, you may notice that nothing appears - this happens because, by
+default, lemonbar quits once you stop piping text into it. Although you
+could use the flag <code>-p</code> to make it permanent and not exit once the input
+stops, this wouldn&rsquo;t be very useful if you wanted to update, say, the date
+or the network status, battery info, etc. Thus, a better approach involves
+constantly piping into the bar:</p>
+
+<pre><code class="language-shell">while true
+do
+    echo $(date)
+    sleep 1
+done | lemonbar
+</code></pre>
+
+<p>Now you get a small bar that&rsquo;s updating the time once per second, neat!
+From here on you can start tinkering with it, giving it different
+flags to set colors, fonts, position, width, etc. You can find lots of
+info with <code>man lemonbar</code>, and some examples in the
+<a href="https://wiki.archlinux.org/index.php/Lemonbar">ArchWiki</a>.</p>
+
+<h2 id="a-simple-approach">A simple approach</h2>
+
+<p>I&rsquo;ll show some very simple functions to get some basic info that I&rsquo;d like
+to show on my bar - in particular, I&rsquo;m interested in the current date,
+which desktop I&rsquo;m in, current network, and battery usage. For such, I&rsquo;ll
+only need the following programs:</p>
+
+<ul>
+<li>date</li>
+<li>xdotool (to get data about the current WM)</li>
+<li>iwgetid (part of <code>wireless_tools</code> in Void Linux)</li>
+</ul>
+
+<p>Now, the functions:</p>
+
+<pre><code class="language-bash">function get_date() {
+    date=`date +&quot;%A %d %B&quot;`
+    time=`date +&quot;%R&quot;`
+    echo ${date}, ${time}
+}
+
+function get_bat() {
+    batFull=&quot;&quot;
+    echo &quot;$batFull $(&lt; /sys/class/power_supply/BAT0/capacity)%&quot;
+}
+
+function get_net() {
+    name=$(iwgetid -r)
+    if [ $? -eq 0 ]; then
+        echo &quot;直 $name&quot;
+    else
+        echo &quot;%{F$color01}睊%{F-}&quot;
+    fi
+}
+
+function get_tag() {
+    total=$(xdotool get_num_desktops)
+    current=$(xdotool get_desktop)
+    desktops=&quot;&quot;
+
+    for i in $(seq 0 $(($total - 1))); do
+        if [ $i == $current ]; then
+            desktops+=&quot; ■&quot;
+        else
+            desktops+=&quot; □&quot;
+        fi
+    done
+
+    echo $desktops
+}
+</code></pre>
+
+<p>Now, you have to call each and pipe the results to lemonbar:</p>
+
+<pre><code class="language-bash"># Main loop that constantly pipes into lemonbar
+while true
+do
+    printf &quot;%s %s %s%s\n&quot; \
+            &quot;%{l} $(get_tag)&quot; \
+            &quot;%{c} $(get_date)&quot; \
+            &quot;%{r} $(get_net)  $(get_bat) &quot; \
+            &quot;%{B- F-}&quot; # Cleanup to prevent colors from mixing up
+    sleep 0.3
+done | \
+
+lemonbar -d \
+         -f &quot;$font&quot; \
+         -g ${width}x${height}+${x}+${y} \
+         -n $name \
+         -F $color07
+</code></pre>
+
+<p>That&rsquo;s pretty much it! However, you may notice that if you want to do
+some things a bit more complex, like checking for updates or an action
+that takes a lot more then 0.3s to execute, you&rsquo;d have to increase the
+update time - this would make switching to another desktop take a long
+time to update, for instance. It also brings the question of resource
+usage: is it really necessary to check the date so often? What if you
+only wanted to update it once a minute?</p>
+
+<p>Now I&rsquo;ll show two variants of a more powerful way of tackling this problem.</p>
+
+<h2 id="a-fifo-approach">A FIFO approach</h2>
+
+<p>The core idea is to spawn many little processes, one per function, and
+have them constantly write into a file (or files), and in the main
+loop, only read the values that were written. This allow each process
+to update the file whenever it finds it fitting.</p>
+
+<h3 id="a-single-fifo">A single FIFO</h3>
+
+<p>You can create a single file, constantly write into it from all the
+processes, and only read it once something is written. This has the big
+advantage that the main loop will only run whenever the FIFO is writen,
+but also the downside that you still need to verify exactly what you&rsquo;re
+reading on each ocasion. To aid this, you could add a single letter at
+the beginning of the output of each function.</p>
+
+<p>For the previously mentioned functions, you&rsquo;d have to refactor them like
+this:</p>
+
+<pre><code class="language-shell">BAR_FIFO=/tmp/bar-fifo
+
+# Delete in case it already exists
+rm $BAR_FIFO
+
+mkfifo $BAR_FIFO
+
+## Write into it
+# Date
+while true; do
+    date=`date +&quot;%A %d %B&quot;`
+    time=`date +&quot;%R&quot;`
+    echo 'D' ${date}, ${time}
+    sleep 59
+done &gt; $BAR_FIFO &amp;
+
+# Battery
+while true; do
+    echo 'B' &quot; $(&lt; /sys/class/power_supply/BAT0/capacity)%&quot;
+    sleep 30
+done &gt; $BAR_FIFO &amp;
+
+# Network
+while true; do
+    name=$(iwgetid -r)
+    if [ $? -eq 0 ]; then
+        echo 'N' &quot;直 $name&quot;
+    else
+        echo 'N' &quot;%{F$color01}睊%{F-}&quot;
+    fi
+    sleep 10
+done &gt; $BAR_FIFO &amp;
+
+# Desktops
+while true; do
+    total=$(xdotool get_num_desktops)
+    current=$(xdotool get_desktop)
+    desktops=&quot;&quot;
+
+    for i in $(seq 0 $(($total - 1))); do
+        if [ $i == $current ]; then
+            desktops+=&quot; ■&quot;
+        else
+            desktops+=&quot; □&quot;
+        fi
+    done
+
+    echo 'W' $desktops
+    sleep 0.1
+done &gt; $BAR_FIFO &amp;
+</code></pre>
+
+<p>So far so simple, now to the tricky part, which involves reading from
+the FIFO on the main bar loop:</p>
+
+<pre><code class="language-shell"># Constantly read it, processing each line
+while read -r line &lt; $BAR_FIFO; do
+    case $line in
+        # Date
+        D*)
+            curr_date=&quot;${line#?}&quot;;;
+
+        # Network
+        N*)
+            net=&quot;${line#?}&quot;;;
+
+        # Desktops
+        W*)
+            wm=&quot;${line#?}&quot;;;
+
+        # Battery
+        B*)
+            bat=&quot;${line#?}&quot;;;
+        esac
+        printf &quot;%s\n&quot; &quot;%{l}${wm}%{c}${curr_date}%{r}${net}${bat}&quot;
+done | lemonbar
+</code></pre>
+
+<h3 id="multiple-fifos">Multiple FIFOs</h3>
+
+<p>Another option is to have each function write into a single separate
+file, and from the main loop, only read the contents of each. Although
+it involves making more files, it removes the need to have to identify
+which process is currently writing to the FIFO.</p>
+
+<h2 id="modularity">Modularity</h2>
+
+<p>Since many of these scripts end up being quite long, I suggest splitting
+the it into a few smaller ones:</p>
+
+<pre><code class="language-console">.
+├── bar.sh
+├── bar_config.sh
+└── bar_functions.sh
+</code></pre>
+
+<p>This allows you to keep different settings on different files while
+keeping the same functions in one place, in case you like experimenting
+and want to preserve older ones. For example, in <code>bar_config.sh</code> I have
+the following:</p>
+
+<pre><code class="language-shell">#!/usr/bin/env bash
+
+# Bar
+name=&quot;bar&quot;
+x=18
+y=6
+height=20
+read width foo &lt;&lt;&lt; $(xdotool getdisplaygeometry) 
+width=$(($width - 2 * $x))
+
+# Fonts
+font1=&quot;FuraMono Nerd Font Mono:pixelsize=13&quot;
+font2=&quot;FuraMono Nerd Font Mono:pixelsize=11&quot;
+</code></pre>
+
+<p>At the beginning of my main script, I just source the other files</p>
+
+<pre><code class="language-shell">#!/usr/bin/env bash
+dir=$(dirname $0)
+
+source $dir/bar_functions.sh
+source $dir/bar_config.sh
+</code></pre>
+
+<p>The first line is just a little helper to allow me to run the script
+and find the other files from any directory. You can find my whole
+setup in my <a href="https://gitlab.com/Sacules/dotfiles/tree/master/scripts/">dotfiles</a>.</p>
+
+<h2 id="tips">Tips</h2>
+
+<ul>
+<li>Some window managers may not let you dock the bar, mostly when they are
+not EWMH compliant. Use the flag <code>-d</code> to force docking in these cases -
+I&rsquo;ve found that, in <code>dwm</code>, this is needed even with the EWMH patches.</li>
+<li>If your font constains icons, you&rsquo;ll likely need the <code>lemonbar-xft</code> fork
+for such to work properly.</li>
+<li>Although you can add colors on your own, I suggest sourcing them from
+the current <code>base16-shell</code> theme in case you&rsquo;ve got one.</li>
+<li>If you&rsquo;re very serious about performance or minimalism, you can write
+most of the functions and the main loop in a smaller shell like <code>dash</code>,
+which will prove a lot faster than <code>bash</code>.</li>
+</ul>
+
+    </div>
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+        <div class="pagination__buttons">
+          
+          
+            <span class="button next">
+              <a href="https://sacules.github.io/post/adventures-go-tui-1/">
+                <span class="button__text">Adventures in Go: Writing a TUI, Part 1 - tview</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+    
+
+    </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">kernel_ashes</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2019 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://sacules.github.io/assets/main.js"></script>
+<script src="https://sacules.github.io/assets/prism.js"></script>
+
+
+  
+</div>
+
+</body>
+</html>

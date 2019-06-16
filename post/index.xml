@@ -6,10 +6,19 @@
     <description>Recent content in Posts on kernelashes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Feb 2019 19:02:56 -0300</lastBuildDate>
+    <lastBuildDate>Fri, 14 Jun 2019 11:09:03 -0300</lastBuildDate>
     
 	<atom:link href="https://sacules.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to Lemonbar</title>
+      <link>https://sacules.github.io/post/how-to-lemonbar/</link>
+      <pubDate>Fri, 14 Jun 2019 11:09:03 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/post/how-to-lemonbar/</guid>
+      <description>In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!</description>
+    </item>
     
     <item>
       <title>Adventures in Go: Writing a TUI, Part 1 - tview</title>
