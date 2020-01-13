@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on kernelashes</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on kernelashes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Jun 2019 11:09:03 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 20:02:52 -0300</lastBuildDate>
     
 	<atom:link href="https://sacules.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Modern Vim Setup, Part 1: Language Servers</title>
+      <link>https://sacules.github.io/post/a-modern-vim-setup/</link>
+      <pubDate>Sun, 29 Sep 2019 20:02:52 -0300</pubDate>
+      
+      <guid>https://sacules.github.io/post/a-modern-vim-setup/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>How to Lemonbar</title>
@@ -26,8 +35,8 @@
       <pubDate>Mon, 11 Feb 2019 19:02:56 -0300</pubDate>
       
       <guid>https://sacules.github.io/post/adventures-go-tui-1/</guid>
-      <description>I&amp;rsquo;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&amp;rsquo;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&amp;rsquo;t go too far.
-And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article.</description>
+      <description>I&#39;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&#39;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&#39;t go too far.
+And in the process I&#39;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article.</description>
     </item>
     
     <item>
@@ -36,7 +45,8 @@ And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Term
       <pubDate>Fri, 28 Dec 2018 21:52:01 -0300</pubDate>
       
       <guid>https://sacules.github.io/post/void-journey-i/</guid>
-      <description>I&amp;rsquo;m not sure how I ended up using an obscure GNU/Linux distro such as Void - after finally managing to install Arch with XFCE, and realizing that all the hard work was only beginning, I deleted and kept using MX Linux for a few months more. Then winter holidays came, and thought it was finally time to stop admiring all those wonderful setups from r/unixporn and make my own!</description>
+      <description>I&#39;m not sure how I ended up using an obscure GNU/Linux distro such as Void - after finally managing to install Arch with XFCE, and realizing that all the hard work was only beginning, I deleted and kept using MX Linux for a few months more. Then winter holidays came, and thought it was finally time to stop admiring all those wonderful setups from r/unixporn and make my own!
+Having already used Void before on a VM and a cheap netbook, I felt it was the right choice for my main OS - something simple to install and use on a dialy basis, with up-to-date packages, and that had a minimalistic design.</description>
     </item>
     
     <item>

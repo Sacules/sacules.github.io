@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ricing on kernelashes</title>
@@ -26,7 +26,8 @@
       <pubDate>Fri, 28 Dec 2018 21:52:01 -0300</pubDate>
       
       <guid>https://sacules.github.io/post/void-journey-i/</guid>
-      <description>I&amp;rsquo;m not sure how I ended up using an obscure GNU/Linux distro such as Void - after finally managing to install Arch with XFCE, and realizing that all the hard work was only beginning, I deleted and kept using MX Linux for a few months more. Then winter holidays came, and thought it was finally time to stop admiring all those wonderful setups from r/unixporn and make my own!</description>
+      <description>I&#39;m not sure how I ended up using an obscure GNU/Linux distro such as Void - after finally managing to install Arch with XFCE, and realizing that all the hard work was only beginning, I deleted and kept using MX Linux for a few months more. Then winter holidays came, and thought it was finally time to stop admiring all those wonderful setups from r/unixporn and make my own!
+Having already used Void before on a VM and a cheap netbook, I felt it was the right choice for my main OS - something simple to install and use on a dialy basis, with up-to-date packages, and that had a minimalistic design.</description>
     </item>
     
     <item>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on kernelashes</title>
@@ -6,6 +6,7 @@
     <description>Recent content in Categories on kernelashes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 05 Aug 2018 03:00:42 -0300</lastBuildDate>
     
 	<atom:link href="https://sacules.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     

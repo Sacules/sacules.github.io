@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-    <title>How to dwm :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <head>
+    
+      <title>How to dwm :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.
 Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://sacules.github.io/post/how-to-dwm/" />
+
+
+
 
 
 <link rel="stylesheet" href="https://sacules.github.io/assets/style.css">
@@ -23,41 +26,35 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 <link rel="shortcut icon" href="https://sacules.github.io/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="How to dwm :: kernelashes — Ramblings and handy guides on oddly-specific stuff" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to dwm"/>
 <meta name="twitter:description" content="My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.
-Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in." />
-<meta name="twitter:site" content="https://sacules.github.io/" />
-<meta name="twitter:creator" content="Sacules" />
-<meta name="twitter:image" content="https://sacules.github.io/img/dwm.png">
+Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in."/>
 
 
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="How to dwm :: kernelashes — Ramblings and handy guides on oddly-specific stuff">
+
+<meta property="og:title" content="How to dwm" />
 <meta property="og:description" content="My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.
 Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in." />
+<meta property="og:type" content="article" />
 <meta property="og:url" content="https://sacules.github.io/post/how-to-dwm/" />
-<meta property="og:site_name" content="How to dwm" />
-<meta property="og:image" content="https://sacules.github.io/img/dwm.png">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:section" content="Linux" />
-<meta property="article:published_time" content="2018-08-05 03:00:42 -0300 -03" />
+<meta property="article:published_time" content="2018-08-05T03:00:42-03:00" />
+<meta property="article:modified_time" content="2018-08-05T03:00:42-03:00" />
 
 
 
 
 
-</head>
-<body class="dark-theme">
-<div class="container">
-  <header class="header">
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
   <span class="header__inner">
     <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -107,8 +104,8 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 </header>
 
 
-  <div class="content">
-    
+      <div class="content">
+        
   <div class="post">
     <h2 class="post-title"><a href="https://sacules.github.io/post/how-to-dwm/">How to dwm</a></h2>
     <div class="post-meta">
@@ -138,18 +135,11 @@ Since I had no clue on how to patch it, found an interesting fork on github that
     
 
     <div class="post-content">
-      
-
-<p>My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.</p>
-
+      <p>My experience with dwm started as an interest in tiling window managers - had previously tried i3, but never got comfortable with the keybindings. When I found about the whole suckless project, the idea of a simpler WM that offered tiling and was very light made me interested in trying it on an older netbook I had.</p>
 <p>Since I had no clue on how to patch it, found an interesting fork on github that had some patches I was interested in. Some months later I got tired of it and chose to go all the way to patching dwm myself, and getting the settings I wanted.</p>
-
-<p>And there came the idea of documenting the process, albeit a little late, but better now before I forget the details. The following is a rough guide to patching and customizing dwm, and how to deal with some of the minor details. For a beginner&rsquo;s guide on how to use dwm, see the excellent <a href="http://ratfactor.com/slackware/dwm/">Dave&rsquo;s Visual Guide to dwm</a>.</p>
-
-<p><strong>Notice</strong>: I&rsquo;m using the git version of dwm, which is slightly different and I recommend above the stable versions since it has several fixes.</p>
-
-<p>I&rsquo;ve applied the following patches:</p>
-
+<p>And there came the idea of documenting the process, albeit a little late, but better now before I forget the details. The following is a rough guide to patching and customizing dwm, and how to deal with some of the minor details. For a beginner's guide on how to use dwm, see the excellent <a href="http://ratfactor.com/slackware/dwm/">Dave's Visual Guide to dwm</a>.</p>
+<p><strong>Notice</strong>: I'm using the git version of dwm, which is slightly different and I recommend above the stable versions since it has several fixes.</p>
+<p>I've applied the following patches:</p>
 <ul>
 <li>Tilegap</li>
 <li>Statuscolors</li>
@@ -162,151 +152,91 @@ Since I had no clue on how to patch it, found an interesting fork on github that
 <li>Clear layout</li>
 <li>Status bar padding</li>
 </ul>
-
 <h1 id="colors">Colors</h1>
-
 <p>The easiest part: colors are defined as strings, using an RGB format, and are arrays of characters.</p>
-
-<pre><code class="language-c">static const char normbordercolor[] = &quot;#393f45&quot;;
-</code></pre>
-
-<p>The name doesn&rsquo;t matter, and you can have a many colors defined as you like. What&rsquo;s important is where you put them on the colors array:</p>
-
-<pre><code class="language-c">static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-    [SchemeNorm] = { normfgcolor,   normbgcolor,   normbordercolor, },
-    [SchemeSel]  = { selfgcolor,    selbgcolor,    selbordercolor , },
-	[SchemeUrg] =  { urgfgcolor,    urgbgcolor,    urgbordercolor },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> normbordercolor[] <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#393f45</span><span style="color:#e6db74">&#34;</span>;
+</code></pre></div><p>The name doesn't matter, and you can have a many colors defined as you like. What's important is where you put them on the colors array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>colors[][<span style="color:#ae81ff">3</span>]      <span style="color:#f92672">=</span> {
+	<span style="color:#75715e">/*               fg         bg         border   */</span>
+    [SchemeNorm] <span style="color:#f92672">=</span> { normfgcolor,   normbgcolor,   normbordercolor, },
+    [SchemeSel]  <span style="color:#f92672">=</span> { selfgcolor,    selbgcolor,    selbordercolor , },
+	[SchemeUrg] <span style="color:#f92672">=</span>  { urgfgcolor,    urgbgcolor,    urgbordercolor },
 };
-</code></pre>
-
-<p>Let me explain what each of these means:</p>
-
+</code></pre></div><p>Let me explain what each of these means:</p>
 <ul>
 <li><code>[SchemeNorm]</code> holds the colors used for the inactive windows and tags, <code>fg</code> being the color of words or icons that define each tag, <code>bg</code>the background of each, and <code>border</code> the one for inactive windows.</li>
-<li><code>[SchemeSel]</code>, same idea as before, but for selected windows and tags. In my config I&rsquo;ve set the background of both to be the same and only change the foreground color.</li>
+<li><code>[SchemeSel]</code>, same idea as before, but for selected windows and tags. In my config I've set the background of both to be the same and only change the foreground color.</li>
 <li><code>[SchemeUrg]</code> is an interesting scheme, used for notifications and warnings - for example, having Firefox open in one tag, and in another tag I open a link, the tag containing Firefox will change its colors.</li>
 </ul>
-
 <p>For the sake of consistency, I stick to the colorscheme of my terminal (at the time of writing this, base16 Ashes).</p>
-
 <h1 id="fonts">Fonts</h1>
-
-<p>dwm has this very cool feature called <strong>font fallback</strong> which allows you to define several fonts, and if the first one can&rsquo;t display a character correctly, then dwm will try to  use the following font, and so on. This could be useful if you have a font that doesn&rsquo;t support glyphs or unicode characters, but still want to be able to display them.</p>
-
-<pre><code class="language-c">static const char *fonts[] = { &quot;SauceCodePro Nerd Font:size=9:width=1&quot; };
-</code></pre>
-
-<p>I&rsquo;ve also seen that some people have had performance issues with some of the <a href="link">Nerd Fonts</a>, and this method has allowed them to prevent that. Haven&rsquo;t had such problems so ended up putting just one font.</p>
-
+<p>dwm has this very cool feature called <strong>font fallback</strong> which allows you to define several fonts, and if the first one can't display a character correctly, then dwm will try to  use the following font, and so on. This could be useful if you have a font that doesn't support glyphs or unicode characters, but still want to be able to display them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>fonts[] <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">SauceCodePro Nerd Font:size=9:width=1</span><span style="color:#e6db74">&#34;</span> };
+</code></pre></div><p>I've also seen that some people have had performance issues with some of the <a href="link">Nerd Fonts</a>, and this method has allowed them to prevent that. Haven't had such problems so ended up putting just one font.</p>
 <h1 id="tags">Tags</h1>
-
-<p>Similarly to the concept of several workspaces, dwm incorporates tags, which are like tabs were you can put your windows in. What&rsquo;s interesting tho, is the ability of combining several of these tags - that is, displaying the windows of several at once. By default, they&rsquo;re named from 1 to 9, but you can change that for any text or unicode icon you like - I think there&rsquo;s no minimum beyond 1 tag, but I&rsquo;m not sure if there&rsquo;s a limit of how many dwm can deal with.</p>
-
-<pre><code class="language-c">static const char *tags[] = { &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot; };
-</code></pre>
-
-<h1 id="rules">Rules</h1>
-
+<p>Similarly to the concept of several workspaces, dwm incorporates tags, which are like tabs were you can put your windows in. What's interesting tho, is the ability of combining several of these tags - that is, displaying the windows of several at once. By default, they're named from 1 to 9, but you can change that for any text or unicode icon you like - I think there's no minimum beyond 1 tag, but I'm not sure if there's a limit of how many dwm can deal with.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>tags[] <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span> };
+</code></pre></div><h1 id="rules">Rules</h1>
 <p>We can also define how certain programs will behave - this is handy to quickly set up the ones we use a lot, and be certain that, for example, Firefox will always open on the fourth tag of our third monitor and will always be floating no matter what.</p>
-
-<pre><code class="language-c">static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ &quot;Gimp&quot;,     NULL,       NULL,       0,            1,           -1 },
-	{ &quot;Firefox&quot;,  NULL,       NULL,       0,       		0,           -1 },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> Rule rules[] <span style="color:#f92672">=</span> {
+	<span style="color:#75715e">/* xprop(1):
+</span><span style="color:#75715e">	 *	WM_CLASS(STRING) = instance, class
+</span><span style="color:#75715e">	 *	WM_NAME(STRING) = title
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#75715e">/* class      instance    title       tags mask     isfloating   monitor */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Gimp</span><span style="color:#e6db74">&#34;</span>,     NULL,       NULL,       <span style="color:#ae81ff">0</span>,            <span style="color:#ae81ff">1</span>,           <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> },
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Firefox</span><span style="color:#e6db74">&#34;</span>,  NULL,       NULL,       <span style="color:#ae81ff">0</span>,       		<span style="color:#ae81ff">0</span>,           <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> },
 };
-</code></pre>
-
-<p>A far more detailed explanation of how rules work can be found <a href="https://dwm.suckless.org/customisation/rules/">here</a>.</p>
-
+</code></pre></div><p>A far more detailed explanation of how rules work can be found <a href="https://dwm.suckless.org/customisation/rules/">here</a>.</p>
 <h1 id="layouts">Layouts</h1>
-
-<p>This is just a list of all the layouts we have installed, the first three the default ones dwm includes, and the rest, the ones we can add by patching. Since they&rsquo;re represented with a string, we can change that to a nice unicode character like I&rsquo;ve done here.</p>
-
-<pre><code class="language-c">static const Layout layouts[] = {
-	/* symbol       arrange function */
-	{ &quot;ﴳ&quot;,      tile },    /* first entry is default */
-	{ &quot;缾&quot;,      NULL },    /* no layout function means floating behavior */
-	{ &quot;类&quot;,      monocle },
-	{ &quot;ﰀ&quot;,      bstack },
-	{ &quot;&quot;,      bstackhoriz },
-    { &quot;&quot;,      clean },
+<p>This is just a list of all the layouts we have installed, the first three the default ones dwm includes, and the rest, the ones we can add by patching. Since they're represented with a string, we can change that to a nice unicode character like I've done here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> Layout layouts[] <span style="color:#f92672">=</span> {
+	<span style="color:#75715e">/* symbol       arrange function */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ﴳ</span><span style="color:#e6db74">&#34;</span>,      tile },    <span style="color:#75715e">/* first entry is default */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">缾</span><span style="color:#e6db74">&#34;</span>,      NULL },    <span style="color:#75715e">/* no layout function means floating behavior */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">类</span><span style="color:#e6db74">&#34;</span>,      monocle },
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ﰀ</span><span style="color:#e6db74">&#34;</span>,      bstack },
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>,      bstackhoriz },
+    { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span>,      clean },
 };
-</code></pre>
-
-<h1 id="keybindings-and-custom-commands">Keybindings and custom commands</h1>
-
-<p>Before going into patching, I&rsquo;ll describe one of the most powerful customizations: keybindings. dwm can launch applications and use shell commands, and understanding how to add your own besides the default ones goes a long way to boost your <del>laziness</del> productivity.</p>
-
-<p>First, let&rsquo;s take a quick glance at the <code>MODKEY</code> thing that&rsquo;s defined here:</p>
-
-<pre><code class="language-c">#define MODKEY Mod1Mask
-</code></pre>
-
-<p>This is basically the main key when using dwm, over which we append others - for example, <code>MODKEY + i</code> moves the focus to another window, <code>MODKEY + f</code> changes the layout to floating, etc. This particular <code>MODKEY</code> is mapped to <code>Mod1</code>, which is the left <code>Alt</code> key. Since this one is often used by many programs, I changed it to the Windows key on my keyboard, which is <code>Mod4</code>.</p>
-
-<p>Now, let&rsquo;s dig at adding commands: we define our command as a pointer to a static array of strings, giving each flag and parameter it&rsquo;s own place. Finally, we add <code>NULL</code> at the end to indicate that there are no more commands left. As an example, I&rsquo;ve created this to take screenshots.</p>
-
-<pre><code class="language-c">static const char *scrotcmd[] = { &quot;scrot&quot;, &quot;--exec&quot;, &quot;mv -v $f ~/Pictures/Screenshots/&quot;, NULL };
-</code></pre>
-
-<p>Note that the third option here is a single parameter that you give to <code>scrot</code>, so it&rsquo;d normally look like this on the command line:</p>
-
-<pre><code class="language-console">$ scrot --exec 'mv -v $f ~/Pictures/Screenshots/'
-</code></pre>
-
-<p>Then, to be able to assign a keybinding to this new command, we go to the keys array, and at the bottom, we can add our own:</p>
-
-<pre><code class="language-c">static Key keys[] = {
-	/* modifier            key           function    argument */
-	{ MODKEY,              XK_p,         spawn,      {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,    XK_Return,    spawn,      {.v = termcmd } },
+</code></pre></div><h1 id="keybindings-and-custom-commands">Keybindings and custom commands</h1>
+<p>Before going into patching, I'll describe one of the most powerful customizations: keybindings. dwm can launch applications and use shell commands, and understanding how to add your own besides the default ones goes a long way to boost your <del>laziness</del> productivity.</p>
+<p>First, let's take a quick glance at the <code>MODKEY</code> thing that's defined here:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#</span><span style="color:#75715e">define MODKEY Mod1Mask</span><span style="color:#75715e">
+</span></code></pre></div><p>This is basically the main key when using dwm, over which we append others - for example, <code>MODKEY + i</code> moves the focus to another window, <code>MODKEY + f</code> changes the layout to floating, etc. This particular <code>MODKEY</code> is mapped to <code>Mod1</code>, which is the left <code>Alt</code> key. Since this one is often used by many programs, I changed it to the Windows key on my keyboard, which is <code>Mod4</code>.</p>
+<p>Now, let's dig at adding commands: we define our command as a pointer to a static array of strings, giving each flag and parameter it's own place. Finally, we add <code>NULL</code> at the end to indicate that there are no more commands left. As an example, I've created this to take screenshots.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>scrotcmd[] <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">scrot</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">--exec</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mv -v $f ~/Pictures/Screenshots/</span><span style="color:#e6db74">&#34;</span>, NULL };
+</code></pre></div><p>Note that the third option here is a single parameter that you give to <code>scrot</code>, so it'd normally look like this on the command line:</p>
+<pre><code class="language-console" data-lang="console">$ scrot --exec 'mv -v $f ~/Pictures/Screenshots/'
+</code></pre><p>Then, to be able to assign a keybinding to this new command, we go to the keys array, and at the bottom, we can add our own:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> Key keys[] <span style="color:#f92672">=</span> {
+	<span style="color:#75715e">/* modifier            key           function    argument */</span>
+	{ MODKEY,              XK_p,         spawn,      {.v <span style="color:#f92672">=</span> dmenucmd } },
+	{ MODKEY<span style="color:#f92672">|</span>ShiftMask,    XK_Return,    spawn,      {.v <span style="color:#f92672">=</span> termcmd } },
     ...
-    /* custom */
-	{ False,               XK_Print,     spawn,      {.v = scrotcmd } },
-</code></pre>
-
-<p>A quick explanation of what&rsquo;s going on here:</p>
-
+    <span style="color:#75715e">/* custom */</span>
+	{ False,               XK_Print,     spawn,      {.v <span style="color:#f92672">=</span> scrotcmd } },
+</code></pre></div><p>A quick explanation of what's going on here:</p>
 <ul>
-<li>In the first column we have to tell dwm if we&rsquo;re using a modifier key plus another key like <code>Ctrl</code> or <code>Shift</code>. In our case we don&rsquo;t need any so we&rsquo;ll leave it as <code>False</code>.</li>
+<li>In the first column we have to tell dwm if we're using a modifier key plus another key like <code>Ctrl</code> or <code>Shift</code>. In our case we don't need any so we'll leave it as <code>False</code>.</li>
 <li>The following column is the actual key we want to press, in our case the <code>Imp Pnt</code> one. you can find a complete list of keys <a href="http://docs.piston.rs/mush/x11/keysym/">here</a>.</li>
-<li><code>function</code> calls one of dwm&rsquo;s functions, we&rsquo;re interested in the <code>spawn</code> one since it&rsquo;s used for shell commands.</li>
-<li>Lastly, we have to say what our command is! I&rsquo;ve got no clue of what the syntax exactly means on this case, so just go with <code>{.v = yourcommand }</code>.</li>
+<li><code>function</code> calls one of dwm's functions, we're interested in the <code>spawn</code> one since it's used for shell commands.</li>
+<li>Lastly, we have to say what our command is! I've got no clue of what the syntax exactly means on this case, so just go with <code>{.v = yourcommand }</code>.</li>
 </ul>
-
-<p>And that&rsquo;s pretty much it! But wait, what if I want to use those fancy buttons to lower/raise volume? Those keys are covered with another library, which we need to import at the beginning of our config:</p>
-
-<pre><code class="language-c">#include &lt;X11/XF86keysym.h&gt;
-</code></pre>
-
-<p>I use the following commands to adjust volume:</p>
-
-<pre><code class="language-c">static const char *volupcmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%+&quot;, NULL };
-static const char *voldncmd[] = { &quot;amixer&quot;, &quot;-q&quot;, &quot;set&quot;, &quot;Master&quot;, &quot;5%-&quot;, NULL };
-</code></pre>
-
-<p>Now, when adding a keybinding, notice the different naming for they key:</p>
-
-<pre><code class="language-c">{ False,    XF86XK_AudioRaiseVolume,    spawn,    {.v = volupcmd } },
-{ False,    XF86XK_AudioLowerVolume,    spawn,    {.v = voldncmd } },
-</code></pre>
-
-<p>You can find more media keys <a href="http://docs.piston.rs/piston_window/x11_dl/keysym/index.html">here</a>.</p>
-
-<p>To finish this section, there&rsquo;s a part in the config about adding bindings to mouse buttons but I haven&rsquo;t got use for that so I can&rsquo;t guide you there.</p>
-
+<p>And that's pretty much it! But wait, what if I want to use those fancy buttons to lower/raise volume? Those keys are covered with another library, which we need to import at the beginning of our config:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;X11/XF86keysym.h&gt;</span><span style="color:#75715e">
+</span></code></pre></div><p>I use the following commands to adjust volume:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>volupcmd[] <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">amixer</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">-q</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">set</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Master</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">5%+</span><span style="color:#e6db74">&#34;</span>, NULL };
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>voldncmd[] <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">amixer</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">-q</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">set</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Master</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">5%-</span><span style="color:#e6db74">&#34;</span>, NULL };
+</code></pre></div><p>Now, when adding a keybinding, notice the different naming for they key:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">{ False,    XF86XK_AudioRaiseVolume,    spawn,    {.v <span style="color:#f92672">=</span> volupcmd } },
+{ False,    XF86XK_AudioLowerVolume,    spawn,    {.v <span style="color:#f92672">=</span> voldncmd } },
+</code></pre></div><p>You can find more media keys <a href="http://docs.piston.rs/piston_window/x11_dl/keysym/index.html">here</a>.</p>
+<p>To finish this section, there's a part in the config about adding bindings to mouse buttons but I haven't got use for that so I can't guide you there.</p>
 <h1 id="patches">Patches</h1>
-
-<p>This is one if the most interesting parts about the suckless project but also what detracts others away from their software: they implement the bare, minimum functionality in a very compact and simple way, and to add more, you have to use patches. These are usually made and mantained by the community and add plenty of interesting twists to the usual workflow. Many fear this approach due to potential conflicts, and they&rsquo;re partly right, but solving these is trivial in most cases I&rsquo;ve encountered. I&rsquo;ll quickly show how to add some simple patches and how to deal with conflicts.</p>
-
-<p>Let&rsquo;s begin with a simple patch, let&rsquo;s say you want to add the <strong>pertag</strong> patch. You simply do:</p>
-
-<pre><code class="language-console">$ patch -p1 &lt; dwm-pertag-20170513-ceac8c9.diff
+<p>This is one if the most interesting parts about the suckless project but also what detracts others away from their software: they implement the bare, minimum functionality in a very compact and simple way, and to add more, you have to use patches. These are usually made and mantained by the community and add plenty of interesting twists to the usual workflow. Many fear this approach due to potential conflicts, and they're partly right, but solving these is trivial in most cases I've encountered. I'll quickly show how to add some simple patches and how to deal with conflicts.</p>
+<p>Let's begin with a simple patch, let's say you want to add the <strong>pertag</strong> patch. You simply do:</p>
+<pre><code class="language-console" data-lang="console">$ patch -p1 &lt; dwm-pertag-20170513-ceac8c9.diff
 patching file dwm.c
 Hunk #1 succeeded at 111 (offset -1 lines).
 Hunk #2 succeeded at 131 (offset -1 lines).
@@ -319,13 +249,9 @@ Hunk #8 succeeded at 1548 (offset -2 lines).
 Hunk #9 succeeded at 1725 (offset -2 lines).
 Hunk #10 succeeded at 1764 (offset -2 lines).
 Hunk #11 succeeded at 2085 (offset -1 lines).
-</code></pre>
-
-<p>Easy and smooth! Now recompile dwm and you&rsquo;re ready to go. You&rsquo;ll see a new file was generated called <code>dwm.c.orig</code> - this is the original file from before we applied the patch. If everything works fine, you can safely delete it.</p>
-
-<p>Let&rsquo;s try to add more patches, say, new layouts like <strong>fibonacci</strong> and <strong>bottomstack</strong>. As before, we do:</p>
-
-<pre><code class="language-console">$ patch -p1 &lt; dwm-fibonacci-5.8.2.diff
+</code></pre><p>Easy and smooth! Now recompile dwm and you're ready to go. You'll see a new file was generated called <code>dwm.c.orig</code> - this is the original file from before we applied the patch. If everything works fine, you can safely delete it.</p>
+<p>Let's try to add more patches, say, new layouts like <strong>fibonacci</strong> and <strong>bottomstack</strong>. As before, we do:</p>
+<pre><code class="language-console" data-lang="console">$ patch -p1 &lt; dwm-fibonacci-5.8.2.diff
 patching file config.def.h
 Hunk #1 succeeded at 39 (offset 10 lines).
 Hunk #2 succeeded at 45 (offset 10 lines).
@@ -339,86 +265,83 @@ Hunk #2 succeeded at 79 (offset 3 lines).
 patching file dwm.c
 Hunk #1 succeeded at 235 (offset 1 line).
 Hunk #2 succeeded at 2225 (offset 85 lines).
-</code></pre>
-
-<p>Don&rsquo;t panic, this is usual - let&rsquo;s check what specific changes couldn&rsquo;t be applied. Checking the <code>config.def.h.rej</code> file we can see:</p>
-
-<pre><code class="language-diff">--- config.def.h
-+++ config.def.h
-@@ -41,6 +41,8 @@ static const Layout layouts[] = {
- 	{ &quot;[]=&quot;,      tile },    /* first entry is default */
- 	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
- 	{ &quot;[M]&quot;,      monocle },
-+	{ &quot;TTT&quot;,      bstack },
-+	{ &quot;===&quot;,      bstackhoriz },
- };
+</code></pre><p>Don't panic, this is usual - let's check what specific changes couldn't be applied. Checking the <code>config.def.h.rej</code> file we can see:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#f92672">--- config.def.h
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ config.def.h
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -41,6 +41,8 @@ static const Layout layouts[] = {
+</span><span style="color:#75715e"></span> 	{ &#34;[]=&#34;,      tile },    /* first entry is default */
+ 	{ &#34;&gt;&lt;&gt;&#34;,      NULL },    /* no layout function means floating behavior */
+ 	{ &#34;[M]&#34;,      monocle },
+<span style="color:#a6e22e">+	{ &#34;TTT&#34;,      bstack },
+</span><span style="color:#a6e22e"></span><span style="color:#a6e22e">+	{ &#34;===&#34;,      bstackhoriz },
+</span><span style="color:#a6e22e"></span> };
  
  /* key definitions */
-</code></pre>
-
-<p>The conflicts come from the patch expecting your code to look <em>exactly</em> like this, so let&rsquo;s see how that part of <code>config.def.h</code> actually looks like:</p>
-
-<pre><code class="language-c">    { &quot;[]=&quot;,      tile },    /* first entry is default */
-	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
-	{ &quot;[M]&quot;,      monocle },
- 	{ &quot;[@]&quot;,      spiral },
- 	{ &quot;[\\]&quot;,      dwindle },
+</code></pre></div><p>The conflicts come from the patch expecting your code to look <em>exactly</em> like this, so let's see how that part of <code>config.def.h</code> actually looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[]=</span><span style="color:#e6db74">&#34;</span>,      tile },    <span style="color:#75715e">/* first entry is default */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&gt;&lt;&gt;</span><span style="color:#e6db74">&#34;</span>,      NULL },    <span style="color:#75715e">/* no layout function means floating behavior */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[M]</span><span style="color:#e6db74">&#34;</span>,      monocle },
+ 	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[@]</span><span style="color:#e6db74">&#34;</span>,      spiral },
+ 	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">]</span><span style="color:#e6db74">&#34;</span>,      dwindle },
 };
 
-/* key definitions */
-</code></pre>
-
-<p>Now it&rsquo;s obvious - it didn&rsquo;t expect those those new layouts we added before since the patch was probably made on a vanilla dwm. This is an easy fix, as we just need to paste the layouts we wanted to add, so it looks like this:</p>
-
-<pre><code class="language-c">    { &quot;[]=&quot;,      tile },    /* first entry is default */
-	{ &quot;&gt;&lt;&gt;&quot;,      NULL },    /* no layout function means floating behavior */
-	{ &quot;[M]&quot;,      monocle },
-    { &quot;TTT&quot;,      bstack },
-	{ &quot;===&quot;,      bstackhoriz },
- 	{ &quot;[@]&quot;,      spiral },
- 	{ &quot;[\\]&quot;,      dwindle },
+<span style="color:#75715e">/* key definitions */</span>
+</code></pre></div><p>Now it's obvious - it didn't expect those those new layouts we added before since the patch was probably made on a vanilla dwm. This is an easy fix, as we just need to paste the layouts we wanted to add, so it looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[]=</span><span style="color:#e6db74">&#34;</span>,      tile },    <span style="color:#75715e">/* first entry is default */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&gt;&lt;&gt;</span><span style="color:#e6db74">&#34;</span>,      NULL },    <span style="color:#75715e">/* no layout function means floating behavior */</span>
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[M]</span><span style="color:#e6db74">&#34;</span>,      monocle },
+    { <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">TTT</span><span style="color:#e6db74">&#34;</span>,      bstack },
+	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">===</span><span style="color:#e6db74">&#34;</span>,      bstackhoriz },
+ 	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[@]</span><span style="color:#e6db74">&#34;</span>,      spiral },
+ 	{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">]</span><span style="color:#e6db74">&#34;</span>,      dwindle },
 };
 
-/* key definitions */
-</code></pre>
-
-<p>And that&rsquo;s pretty much the source of 90% of patch conflicts. There are some other weird cases that might pop up if you have some specific patches that want to modify a common part of the code for, say, drawing the status bar. And those are the tough ones if you are not familiar with C.</p>
+<span style="color:#75715e">/* key definitions */</span>
+</code></pre></div><p>And that's pretty much the source of 90% of patch conflicts. There are some other weird cases that might pop up if you have some specific patches that want to modify a common part of the code for, say, drawing the status bar. And those are the tough ones if you are not familiar with C.</p>
 
     </div>
     
-      <div class="pagination">
-        <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://sacules.github.io/post/void-journey-i/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Void Linux Journey, Part I: Automounting</span>
+                </a>
+              </span>
+            
+            
+          </div>
         </div>
-        <div class="pagination__buttons">
-          
-            <span class="button previous">
-              <a href="https://sacules.github.io/post/void-journey-i/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Void Linux Journey, Part I: Automounting</span>
-              </a>
-            </span>
-          
-          
-        </div>
+      
+    
+    
+
+    
+      
+        
+
+      
+    
+    
+    </div>
+
       </div>
-    
 
-    
-
-    </div>
-
-  </div>
-
-  
-    <footer class="footer">
+      
+        <footer class="footer">
   <div class="footer__inner">
     
       <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -427,7 +350,7 @@ Hunk #2 succeeded at 2225 (offset 85 lines).
 </a>
 
       <div class="copyright">
-        <span>© 2019 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
         <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
       </div>
     
@@ -438,8 +361,9 @@ Hunk #2 succeeded at 2225 (offset 85 lines).
 <script src="https://sacules.github.io/assets/prism.js"></script>
 
 
-  
-</div>
+      
+    </div>
 
-</body>
+    
+  </body>
 </html>

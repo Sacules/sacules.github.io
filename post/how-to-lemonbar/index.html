@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-    <title>How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <head>
+    
+      <title>How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!"/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://sacules.github.io/post/how-to-lemonbar/" />
+
+
+
 
 
 <link rel="stylesheet" href="https://sacules.github.io/assets/style.css">
@@ -22,39 +25,33 @@
 <link rel="shortcut icon" href="https://sacules.github.io/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff" />
-<meta name="twitter:description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!" />
-<meta name="twitter:site" content="https://sacules.github.io/" />
-<meta name="twitter:creator" content="Sacules" />
-<meta name="twitter:image" content="https://sacules.github.io/img/lemonbar.png">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Lemonbar"/>
+<meta name="twitter:description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!"/>
 
 
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="How to Lemonbar :: kernelashes — Ramblings and handy guides on oddly-specific stuff">
+
+<meta property="og:title" content="How to Lemonbar" />
 <meta property="og:description" content="In the huge world of ricing, there are plenty of options when it comes to bars and panels, particularly for unix-like systems: polybar, dzen, xfce-panel, tint2, etc. In particular, lemonbar is one of the most minimal ones, since it only requires text to be piped into it in order to display a bar. Thus getting useful information, like CPU usage or the current time, is left at the hands of the user - scripting time!" />
+<meta property="og:type" content="article" />
 <meta property="og:url" content="https://sacules.github.io/post/how-to-lemonbar/" />
-<meta property="og:site_name" content="How to Lemonbar" />
-<meta property="og:image" content="https://sacules.github.io/img/lemonbar.png">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2019-06-14 11:09:03 -0300 -03" />
+<meta property="article:published_time" content="2019-06-14T11:09:03-03:00" />
+<meta property="article:modified_time" content="2019-06-14T11:09:03-03:00" />
 
 
 
 
 
-</head>
-<body class="dark-theme">
-<div class="container">
-  <header class="header">
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
   <span class="header__inner">
     <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -104,8 +101,8 @@
 </header>
 
 
-  <div class="content">
-    
+      <div class="content">
+        
   <div class="post">
     <h2 class="post-title"><a href="https://sacules.github.io/post/how-to-lemonbar/">How to Lemonbar</a></h2>
     <div class="post-meta">
@@ -133,327 +130,295 @@
     
 
     <div class="post-content">
-      
-
-<p>In the huge world of ricing, there are plenty of options when it comes
+      <p>In the huge world of ricing, there are plenty of options when it comes
 to bars and panels, particularly for unix-like systems: <code>polybar</code>, <code>dzen</code>,
 <code>xfce-panel</code>, <code>tint2</code>, etc. In particular, <a href="https://github.com/LemonBoy/bar">lemonbar</a>
 is one of the most minimal ones, since it only requires text to be piped
 into it in order to display a bar. Thus getting useful information, like
 CPU usage or the current time, is left at the hands of the user - scripting
 time!</p>
-
 <p>However, due to lack of proper documentation on how to actually use the bar,
-I thought making an article describing my workflow and what I&rsquo;ve learned from
+I thought making an article describing my workflow and what I've learned from
 reading others&rsquo; <del>messy</del> scripts, and exploring two different approaches.</p>
-
 <h2 id="basics">Basics</h2>
-
 <p>The simplest posible setting can be simply achieved by:</p>
-
-<pre><code class="language-shell">$ echo &quot;hello world&quot; | lemonbar
-</code></pre>
-
-<p>However, you may notice that nothing appears - this happens because, by
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ echo <span style="color:#e6db74">&#34;hello world&#34;</span> | lemonbar
+</code></pre></div><p>However, you may notice that nothing appears - this happens because, by
 default, lemonbar quits once you stop piping text into it. Although you
 could use the flag <code>-p</code> to make it permanent and not exit once the input
-stops, this wouldn&rsquo;t be very useful if you wanted to update, say, the date
+stops, this wouldn't be very useful if you wanted to update, say, the date
 or the network status, battery info, etc. Thus, a better approach involves
 constantly piping into the bar:</p>
-
-<pre><code class="language-shell">while true
-do
-    echo $(date)
-    sleep 1
-done | lemonbar
-</code></pre>
-
-<p>Now you get a small bar that&rsquo;s updating the time once per second, neat!
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">while</span> true
+<span style="color:#66d9ef">do</span>
+    echo <span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span>
+    sleep <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">done</span> | lemonbar
+</code></pre></div><p>Now you get a small bar that's updating the time once per second, neat!
 From here on you can start tinkering with it, giving it different
 flags to set colors, fonts, position, width, etc. You can find lots of
 info with <code>man lemonbar</code>, and some examples in the
 <a href="https://wiki.archlinux.org/index.php/Lemonbar">ArchWiki</a>.</p>
-
 <h2 id="a-simple-approach">A simple approach</h2>
-
-<p>I&rsquo;ll show some very simple functions to get some basic info that I&rsquo;d like
-to show on my bar - in particular, I&rsquo;m interested in the current date,
-which desktop I&rsquo;m in, current network, and battery usage. For such, I&rsquo;ll
+<p>I'll show some very simple functions to get some basic info that I'd like
+to show on my bar - in particular, I'm interested in the current date,
+which desktop I'm in, current network, and battery usage. For such, I'll
 only need the following programs:</p>
-
 <ul>
 <li>date</li>
 <li>xdotool (to get data about the current WM)</li>
 <li>iwgetid (part of <code>wireless_tools</code> in Void Linux)</li>
 </ul>
-
 <p>Now, the functions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> get_date<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    date<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%A %d %B&#34;</span><span style="color:#e6db74">`</span>
+    time<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%R&#34;</span><span style="color:#e6db74">`</span>
+    echo <span style="color:#e6db74">${</span>date<span style="color:#e6db74">}</span>, <span style="color:#e6db74">${</span>time<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
 
-<pre><code class="language-bash">function get_date() {
-    date=`date +&quot;%A %d %B&quot;`
-    time=`date +&quot;%R&quot;`
-    echo ${date}, ${time}
-}
+<span style="color:#66d9ef">function</span> get_bat<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    batFull<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+    echo <span style="color:#e6db74">&#34;</span>$batFull<span style="color:#e6db74"> </span><span style="color:#66d9ef">$(</span>&lt; /sys/class/power_supply/BAT0/capacity<span style="color:#66d9ef">)</span><span style="color:#e6db74">%</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">}</span>
 
-function get_bat() {
-    batFull=&quot;&quot;
-    echo &quot;$batFull $(&lt; /sys/class/power_supply/BAT0/capacity)%&quot;
-}
+<span style="color:#66d9ef">function</span> get_net<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>iwgetid -r<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">直 </span>$name<span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">else</span>
+        echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{F</span>$color01<span style="color:#e6db74">}睊%{F-}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#f92672">}</span>
 
-function get_net() {
-    name=$(iwgetid -r)
-    if [ $? -eq 0 ]; then
-        echo &quot;直 $name&quot;
-    else
-        echo &quot;%{F$color01}睊%{F-}&quot;
-    fi
-}
+<span style="color:#66d9ef">function</span> get_tag<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    total<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>xdotool get_num_desktops<span style="color:#66d9ef">)</span>
+    current<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>xdotool get_desktop<span style="color:#66d9ef">)</span>
+    desktops<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
 
-function get_tag() {
-    total=$(xdotool get_num_desktops)
-    current=$(xdotool get_desktop)
-    desktops=&quot;&quot;
-
-    for i in $(seq 0 $(($total - 1))); do
-        if [ $i == $current ]; then
-            desktops+=&quot; ■&quot;
-        else
-            desktops+=&quot; □&quot;
-        fi
-    done
+    <span style="color:#66d9ef">for</span> i in <span style="color:#66d9ef">$(</span>seq <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">$((</span>$total <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span><span style="color:#66d9ef">)</span>; <span style="color:#66d9ef">do</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> $current <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            desktops<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34; ■&#34;</span>
+        <span style="color:#66d9ef">else</span>
+            desktops<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34; □&#34;</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">done</span>
 
     echo $desktops
-}
-</code></pre>
-
-<p>Now, you have to call each and pipe the results to lemonbar:</p>
-
-<pre><code class="language-bash"># Main loop that constantly pipes into lemonbar
-while true
-do
-    printf &quot;%s %s %s%s\n&quot; \
-            &quot;%{l} $(get_tag)&quot; \
-            &quot;%{c} $(get_date)&quot; \
-            &quot;%{r} $(get_net)  $(get_bat) &quot; \
-            &quot;%{B- F-}&quot; # Cleanup to prevent colors from mixing up
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Now, you have to call each and pipe the results to lemonbar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Main loop that constantly pipes into lemonbar</span>
+<span style="color:#66d9ef">while</span> true
+<span style="color:#66d9ef">do</span>
+    printf <span style="color:#e6db74">&#34;%s %s %s%s\n&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{l} </span><span style="color:#66d9ef">$(</span>get_tag<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{c} </span><span style="color:#66d9ef">$(</span>get_date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{r} </span><span style="color:#66d9ef">$(</span>get_net<span style="color:#66d9ef">)</span><span style="color:#e6db74">  </span><span style="color:#66d9ef">$(</span>get_bat<span style="color:#66d9ef">)</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            <span style="color:#e6db74">&#34;%{B- F-}&#34;</span> <span style="color:#75715e"># Cleanup to prevent colors from mixing up</span>
     sleep 0.3
-done | \
-
-lemonbar -d \
-         -f &quot;$font&quot; \
-         -g ${width}x${height}+${x}+${y} \
-         -n $name \
-         -F $color07
-</code></pre>
-
-<p>That&rsquo;s pretty much it! However, you may notice that if you want to do
+<span style="color:#66d9ef">done</span> | <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>
+lemonbar -d <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>         -f <span style="color:#e6db74">&#34;</span>$font<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>         -g <span style="color:#e6db74">${</span>width<span style="color:#e6db74">}</span>x<span style="color:#e6db74">${</span>height<span style="color:#e6db74">}</span>+<span style="color:#e6db74">${</span>x<span style="color:#e6db74">}</span>+<span style="color:#e6db74">${</span>y<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>         -n $name <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>         -F $color07
+</code></pre></div><p>That's pretty much it! However, you may notice that if you want to do
 some things a bit more complex, like checking for updates or an action
-that takes a lot more then 0.3s to execute, you&rsquo;d have to increase the
+that takes a lot more then 0.3s to execute, you'd have to increase the
 update time - this would make switching to another desktop take a long
 time to update, for instance. It also brings the question of resource
 usage: is it really necessary to check the date so often? What if you
 only wanted to update it once a minute?</p>
-
-<p>Now I&rsquo;ll show two variants of a more powerful way of tackling this problem.</p>
-
+<p>Now I'll show two variants of a more powerful way of tackling this problem.</p>
 <h2 id="a-fifo-approach">A FIFO approach</h2>
-
 <p>The core idea is to spawn many little processes, one per function, and
 have them constantly write into a file (or files), and in the main
 loop, only read the values that were written. This allow each process
 to update the file whenever it finds it fitting.</p>
-
 <h3 id="a-single-fifo">A single FIFO</h3>
-
 <p>You can create a single file, constantly write into it from all the
 processes, and only read it once something is written. This has the big
 advantage that the main loop will only run whenever the FIFO is writen,
-but also the downside that you still need to verify exactly what you&rsquo;re
+but also the downside that you still need to verify exactly what you're
 reading on each ocasion. To aid this, you could add a single letter at
 the beginning of the output of each function.</p>
-
-<p>For the previously mentioned functions, you&rsquo;d have to refactor them like
+<p>For the previously mentioned functions, you'd have to refactor them like
 this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">BAR_FIFO<span style="color:#f92672">=</span>/tmp/bar-fifo
 
-<pre><code class="language-shell">BAR_FIFO=/tmp/bar-fifo
-
-# Delete in case it already exists
+<span style="color:#75715e"># Delete in case it already exists</span>
 rm $BAR_FIFO
 
 mkfifo $BAR_FIFO
 
-## Write into it
-# Date
-while true; do
-    date=`date +&quot;%A %d %B&quot;`
-    time=`date +&quot;%R&quot;`
-    echo 'D' ${date}, ${time}
-    sleep 59
-done &gt; $BAR_FIFO &amp;
+<span style="color:#75715e">## Write into it</span>
+<span style="color:#75715e"># Date</span>
+<span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+    date<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%A %d %B&#34;</span><span style="color:#e6db74">`</span>
+    time<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%R&#34;</span><span style="color:#e6db74">`</span>
+    echo <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#e6db74">${</span>date<span style="color:#e6db74">}</span>, <span style="color:#e6db74">${</span>time<span style="color:#e6db74">}</span>
+    sleep <span style="color:#ae81ff">59</span>
+<span style="color:#66d9ef">done</span> &gt; $BAR_FIFO &amp;
 
-# Battery
-while true; do
-    echo 'B' &quot; $(&lt; /sys/class/power_supply/BAT0/capacity)%&quot;
-    sleep 30
-done &gt; $BAR_FIFO &amp;
+<span style="color:#75715e"># Battery</span>
+<span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+    echo <span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#66d9ef">$(</span>&lt; /sys/class/power_supply/BAT0/capacity<span style="color:#66d9ef">)</span><span style="color:#e6db74">%</span><span style="color:#e6db74">&#34;</span>
+    sleep <span style="color:#ae81ff">30</span>
+<span style="color:#66d9ef">done</span> &gt; $BAR_FIFO &amp;
 
-# Network
-while true; do
-    name=$(iwgetid -r)
-    if [ $? -eq 0 ]; then
-        echo 'N' &quot;直 $name&quot;
-    else
-        echo 'N' &quot;%{F$color01}睊%{F-}&quot;
-    fi
-    sleep 10
-done &gt; $BAR_FIFO &amp;
+<span style="color:#75715e"># Network</span>
+<span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+    name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>iwgetid -r<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        echo <span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">直 </span>$name<span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">else</span>
+        echo <span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{F</span>$color01<span style="color:#e6db74">}睊%{F-}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+    sleep <span style="color:#ae81ff">10</span>
+<span style="color:#66d9ef">done</span> &gt; $BAR_FIFO &amp;
 
-# Desktops
-while true; do
-    total=$(xdotool get_num_desktops)
-    current=$(xdotool get_desktop)
-    desktops=&quot;&quot;
+<span style="color:#75715e"># Desktops</span>
+<span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+    total<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>xdotool get_num_desktops<span style="color:#66d9ef">)</span>
+    current<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>xdotool get_desktop<span style="color:#66d9ef">)</span>
+    desktops<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
 
-    for i in $(seq 0 $(($total - 1))); do
-        if [ $i == $current ]; then
-            desktops+=&quot; ■&quot;
-        else
-            desktops+=&quot; □&quot;
-        fi
-    done
+    <span style="color:#66d9ef">for</span> i in <span style="color:#66d9ef">$(</span>seq <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">$((</span>$total <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span><span style="color:#66d9ef">)</span>; <span style="color:#66d9ef">do</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $i <span style="color:#f92672">=</span><span style="color:#f92672">=</span> $current <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            desktops<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34; ■&#34;</span>
+        <span style="color:#66d9ef">else</span>
+            desktops<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34; □&#34;</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">done</span>
 
-    echo 'W' $desktops
+    echo <span style="color:#e6db74">&#39;W&#39;</span> $desktops
     sleep 0.1
-done &gt; $BAR_FIFO &amp;
-</code></pre>
-
-<p>So far so simple, now to the tricky part, which involves reading from
+<span style="color:#66d9ef">done</span> &gt; $BAR_FIFO &amp;
+</code></pre></div><p>So far so simple, now to the tricky part, which involves reading from
 the FIFO on the main bar loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Constantly read it, processing each line</span>
+<span style="color:#66d9ef">while</span> read -r line &lt; $BAR_FIFO; <span style="color:#66d9ef">do</span>
+    <span style="color:#66d9ef">case</span> $line in
+        <span style="color:#75715e"># Date</span>
+        D*<span style="color:#f92672">)</span>
+            curr_date<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>line#?<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;;
 
-<pre><code class="language-shell"># Constantly read it, processing each line
-while read -r line &lt; $BAR_FIFO; do
-    case $line in
-        # Date
-        D*)
-            curr_date=&quot;${line#?}&quot;;;
+        <span style="color:#75715e"># Network</span>
+        N*<span style="color:#f92672">)</span>
+            net<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>line#?<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;;
 
-        # Network
-        N*)
-            net=&quot;${line#?}&quot;;;
+        <span style="color:#75715e"># Desktops</span>
+        W*<span style="color:#f92672">)</span>
+            wm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>line#?<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;;
 
-        # Desktops
-        W*)
-            wm=&quot;${line#?}&quot;;;
-
-        # Battery
-        B*)
-            bat=&quot;${line#?}&quot;;;
-        esac
-        printf &quot;%s\n&quot; &quot;%{l}${wm}%{c}${curr_date}%{r}${net}${bat}&quot;
-done | lemonbar
-</code></pre>
-
-<h3 id="multiple-fifos">Multiple FIFOs</h3>
-
+        <span style="color:#75715e"># Battery</span>
+        B*<span style="color:#f92672">)</span>
+            bat<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>line#?<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>;;
+        <span style="color:#66d9ef">esac</span>
+        printf <span style="color:#e6db74">&#34;%s\n&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%{l}</span><span style="color:#e6db74">${</span>wm<span style="color:#e6db74">}</span><span style="color:#e6db74">%{c}</span><span style="color:#e6db74">${</span>curr_date<span style="color:#e6db74">}</span><span style="color:#e6db74">%{r}</span><span style="color:#e6db74">${</span>net<span style="color:#e6db74">}</span><span style="color:#e6db74">${</span>bat<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">done</span> | lemonbar
+</code></pre></div><h3 id="multiple-fifos">Multiple FIFOs</h3>
 <p>Another option is to have each function write into a single separate
 file, and from the main loop, only read the contents of each. Although
 it involves making more files, it removes the need to have to identify
 which process is currently writing to the FIFO.</p>
-
 <h2 id="modularity">Modularity</h2>
-
 <p>Since many of these scripts end up being quite long, I suggest splitting
 the it into a few smaller ones:</p>
-
-<pre><code class="language-console">.
+<pre><code class="language-console" data-lang="console">.
 ├── bar.sh
 ├── bar_config.sh
 └── bar_functions.sh
-</code></pre>
-
-<p>This allows you to keep different settings on different files while
+</code></pre><p>This allows you to keep different settings on different files while
 keeping the same functions in one place, in case you like experimenting
 and want to preserve older ones. For example, in <code>bar_config.sh</code> I have
 the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># Bar</span>
+name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bar&#34;</span>
+x<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>
+y<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>
+height<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>
+read width foo <span style="color:#f92672">&lt;&lt;&lt;</span> <span style="color:#66d9ef">$(</span>xdotool getdisplaygeometry<span style="color:#66d9ef">)</span> 
+width<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$width <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x<span style="color:#66d9ef">))</span>
 
-<pre><code class="language-shell">#!/usr/bin/env bash
-
-# Bar
-name=&quot;bar&quot;
-x=18
-y=6
-height=20
-read width foo &lt;&lt;&lt; $(xdotool getdisplaygeometry) 
-width=$(($width - 2 * $x))
-
-# Fonts
-font1=&quot;FuraMono Nerd Font Mono:pixelsize=13&quot;
-font2=&quot;FuraMono Nerd Font Mono:pixelsize=11&quot;
-</code></pre>
-
-<p>At the beginning of my main script, I just source the other files</p>
-
-<pre><code class="language-shell">#!/usr/bin/env bash
-dir=$(dirname $0)
+<span style="color:#75715e"># Fonts</span>
+font1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;FuraMono Nerd Font Mono:pixelsize=13&#34;</span>
+font2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;FuraMono Nerd Font Mono:pixelsize=11&#34;</span>
+</code></pre></div><p>At the beginning of my main script, I just source the other files</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>dirname $0<span style="color:#66d9ef">)</span>
 
 source $dir/bar_functions.sh
 source $dir/bar_config.sh
-</code></pre>
-
-<p>The first line is just a little helper to allow me to run the script
+</code></pre></div><p>The first line is just a little helper to allow me to run the script
 and find the other files from any directory. You can find my whole
 setup in my <a href="https://gitlab.com/Sacules/dotfiles/tree/master/scripts/">dotfiles</a>.</p>
-
 <h2 id="tips">Tips</h2>
-
 <ul>
 <li>Some window managers may not let you dock the bar, mostly when they are
 not EWMH compliant. Use the flag <code>-d</code> to force docking in these cases -
-I&rsquo;ve found that, in <code>dwm</code>, this is needed even with the EWMH patches.</li>
-<li>If your font constains icons, you&rsquo;ll likely need the <code>lemonbar-xft</code> fork
+I've found that, in <code>dwm</code>, this is needed even with the EWMH patches.</li>
+<li>If your font constains icons, you'll likely need the <code>lemonbar-xft</code> fork
 for such to work properly.</li>
 <li>Although you can add colors on your own, I suggest sourcing them from
-the current <code>base16-shell</code> theme in case you&rsquo;ve got one.</li>
-<li>If you&rsquo;re very serious about performance or minimalism, you can write
+the current <code>base16-shell</code> theme in case you've got one.</li>
+<li>If you're very serious about performance or minimalism, you can write
 most of the functions and the main loop in a smaller shell like <code>dash</code>,
 which will prove a lot faster than <code>bash</code>.</li>
 </ul>
 
     </div>
     
-      <div class="pagination">
-        <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://sacules.github.io/post/a-modern-vim-setup/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">A Modern Vim Setup, Part 1: Language Servers</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="https://sacules.github.io/post/adventures-go-tui-1/">
+                  <span class="button__text">Adventures in Go: Writing a TUI, Part 1 - tview</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
         </div>
-        <div class="pagination__buttons">
-          
-          
-            <span class="button next">
-              <a href="https://sacules.github.io/post/adventures-go-tui-1/">
-                <span class="button__text">Adventures in Go: Writing a TUI, Part 1 - tview</span>
-                <span class="button__icon">→</span>
-              </a>
-            </span>
-          
-        </div>
-      </div>
+      
+    
     
 
     
+      
+        
 
+      
+    
+    
     </div>
 
-  </div>
+      </div>
 
-  
-    <footer class="footer">
+      
+        <footer class="footer">
   <div class="footer__inner">
     
       <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -462,7 +427,7 @@ which will prove a lot faster than <code>bash</code>.</li>
 </a>
 
       <div class="copyright">
-        <span>© 2019 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
         <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
       </div>
     
@@ -473,8 +438,9 @@ which will prove a lot faster than <code>bash</code>.</li>
 <script src="https://sacules.github.io/assets/prism.js"></script>
 
 
-  
-</div>
+      
+    </div>
 
-</body>
+    
+  </body>
 </html>

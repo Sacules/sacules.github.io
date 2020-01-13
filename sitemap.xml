@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -8,7 +8,37 @@
   </url>
   
   <url>
+    <loc>https://sacules.github.io/post/a-modern-vim-setup/</loc>
+    <lastmod>2019-09-29T20:02:52-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/</loc>
+    <lastmod>2019-09-29T20:02:52-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/post/</loc>
+    <lastmod>2019-09-29T20:02:52-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/</loc>
+    <lastmod>2019-09-29T20:02:52-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/vim/</loc>
+    <lastmod>2019-09-29T20:02:52-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sacules.github.io/post/how-to-lemonbar/</loc>
+    <lastmod>2019-06-14T11:09:03-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/ricing/</loc>
     <lastmod>2019-06-14T11:09:03-03:00</lastmod>
   </url>
   
@@ -18,8 +48,28 @@
   </url>
   
   <url>
+    <loc>https://sacules.github.io/tags/coding/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/go/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/tags/tui/</loc>
+    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sacules.github.io/post/void-journey-i/</loc>
     <lastmod>2018-12-28T21:52:01-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sacules.github.io/categories/</loc>
+    <lastmod>2018-08-05T03:00:42-03:00</lastmod>
   </url>
   
   <url>
@@ -28,62 +78,13 @@
   </url>
   
   <url>
-    <loc>https://sacules.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/tags/coding/</loc>
-    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/tags/go/</loc>
-    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://sacules.github.io/categories/linux/</loc>
     <lastmod>2018-08-05T03:00:42-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/post/</loc>
-    <lastmod>2019-06-14T11:09:03-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/tags/ricing/</loc>
-    <lastmod>2019-06-14T11:09:03-03:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://sacules.github.io/tags/suckless/</loc>
     <lastmod>2018-08-05T03:00:42-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/tags/</loc>
-    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/tags/tui/</loc>
-    <lastmod>2019-02-11T19:02:56-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://sacules.github.io/</loc>
-    <lastmod>2018-08-05T03:52:16-03:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

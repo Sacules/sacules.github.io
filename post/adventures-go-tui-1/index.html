@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-    <title>Adventures in Go: Writing a TUI, Part 1 - tview :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <head>
+    
+      <title>Adventures in Go: Writing a TUI, Part 1 - tview :: kernelashes — Ramblings and handy guides on oddly-specific stuff</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="I&amp;rsquo;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&amp;rsquo;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&amp;rsquo;t go too far.
-And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article."/>
+<meta name="description" content="I&#39;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&#39;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&#39;t go too far.
+And in the process I&#39;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://sacules.github.io/post/adventures-go-tui-1/" />
+
+
+
 
 
 <link rel="stylesheet" href="https://sacules.github.io/assets/style.css">
@@ -23,41 +26,35 @@ And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Term
 <link rel="shortcut icon" href="https://sacules.github.io/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Adventures in Go: Writing a TUI, Part 1 - tview :: kernelashes — Ramblings and handy guides on oddly-specific stuff" />
-<meta name="twitter:description" content="I&amp;rsquo;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&amp;rsquo;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&amp;rsquo;t go too far.
-And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article." />
-<meta name="twitter:site" content="https://sacules.github.io/" />
-<meta name="twitter:creator" content="Sacules" />
-<meta name="twitter:image" content="https://sacules.github.io/img/tview1.gif">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adventures in Go: Writing a TUI, Part 1 - tview"/>
+<meta name="twitter:description" content="I&#39;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&#39;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&#39;t go too far.
+And in the process I&#39;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article."/>
 
 
-<meta property="og:locale" content="en" />
+
+<meta property="og:title" content="Adventures in Go: Writing a TUI, Part 1 - tview" />
+<meta property="og:description" content="I&#39;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&#39;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&#39;t go too far.
+And in the process I&#39;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article." />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Adventures in Go: Writing a TUI, Part 1 - tview :: kernelashes — Ramblings and handy guides on oddly-specific stuff">
-<meta property="og:description" content="I&amp;rsquo;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&amp;rsquo;ve made a small music tag editor, a variation of a hangman game, a little music scheduler, and was trying to build a dotfile manager but that didn&amp;rsquo;t go too far.
-And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article." />
 <meta property="og:url" content="https://sacules.github.io/post/adventures-go-tui-1/" />
-<meta property="og:site_name" content="Adventures in Go: Writing a TUI, Part 1 - tview" />
-<meta property="og:image" content="https://sacules.github.io/img/tview1.gif">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2019-02-11 19:02:56 -0300 -03" />
+<meta property="article:published_time" content="2019-02-11T19:02:56-03:00" />
+<meta property="article:modified_time" content="2019-02-11T19:02:56-03:00" />
 
 
 
 
 
-</head>
-<body class="dark-theme">
-<div class="container">
-  <header class="header">
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
   <span class="header__inner">
     <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -107,8 +104,8 @@ And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Term
 </header>
 
 
-  <div class="content">
-    
+      <div class="content">
+        
   <div class="post">
     <h2 class="post-title"><a href="https://sacules.github.io/post/adventures-go-tui-1/">Adventures in Go: Writing a TUI, Part 1 - tview</a></h2>
     <div class="post-meta">
@@ -140,32 +137,24 @@ And in the process I&amp;rsquo;ve actually learned a lot about making TUIs (Term
     
 
     <div class="post-content">
-      
-
-<p>I&rsquo;ve been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I&rsquo;ve made a small <a href="https://gitlab.com/Sacules/index">music tag editor</a>, a variation of a <a href="https://gitlab.com/Sacules/hangmanen2">hangman game</a>, a little <a href="https://gitlab.com/Sacules/ms">music scheduler</a>, and was trying to build a dotfile manager but that didn&rsquo;t go too far.</p>
-
-<p>And in the process I&rsquo;ve actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article. I plan this to be a series in which I&rsquo;ll try different TUI packages, build a small program with each, and give my thoughts on the wonders and limitations of each.</p>
-
-<p>Today we&rsquo;ll begin with the first one I&rsquo;ve used: <code>tview</code>. From its Github page:</p>
-
-<pre><code class="language-markdown">This Go package provides commonly needed components for terminal based user interfaces.
+      <p>I've been coding in Go quite often for the last new months, and it has certainly become my favorite programming language. So far I've made a small <a href="https://gitlab.com/Sacules/index">music tag editor</a>, a variation of a <a href="https://gitlab.com/Sacules/hangmanen2">hangman game</a>, a little <a href="https://gitlab.com/Sacules/ms">music scheduler</a>, and was trying to build a dotfile manager but that didn't go too far.</p>
+<p>And in the process I've actually learned a lot about making TUIs (Terminual User Interfaces), which prompted me to write this article. I plan this to be a series in which I'll try different TUI packages, build a small program with each, and give my thoughts on the wonders and limitations of each.</p>
+<p>Today we'll begin with the first one I've used: <code>tview</code>. From its Github page:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">This Go package provides commonly needed components for terminal based user interfaces.
 
 Among these components are:
 
-    * Input forms (include input/password fields, drop-down selections, checkboxes, and buttons)
-    * Navigable multi-color text views
-    * Sophisticated navigable table views
-    * Flexible tree views
-    * Selectable lists
-    * Grid, Flexbox and page layouts
-    * Modal message windows
-    * An application wrapper
+    <span style="color:#66d9ef">*</span> Input forms (include input/password fields, drop-down selections, checkboxes, and buttons)
+    <span style="color:#66d9ef">*</span> Navigable multi-color text views
+    <span style="color:#66d9ef">*</span> Sophisticated navigable table views
+    <span style="color:#66d9ef">*</span> Flexible tree views
+    <span style="color:#66d9ef">*</span> Selectable lists
+    <span style="color:#66d9ef">*</span> Grid, Flexbox and page layouts
+    <span style="color:#66d9ef">*</span> Modal message windows
+    <span style="color:#66d9ef">*</span> An application wrapper
 
 They come with lots of customization options and can be easily extended to fit your needs.
-</code></pre>
-
-<p>It&rsquo;s based on the excellent and thorough <code>tcell</code>, and it&rsquo;s certainly customizable - I&rsquo;ve used it to build Index&rsquo;s interface:</p>
-
+</code></pre></div><p>It's based on the excellent and thorough <code>tcell</code>, and it's certainly customizable - I've used it to build Index's interface:</p>
 
   <figure class="center" >
     <img src="/img/index1.png"  alt="index"   style="border-radius: 0px;"  />
@@ -173,7 +162,6 @@ They come with lots of customization options and can be easily extended to fit y
       <figcaption class="center" >Manual Tagging mode</figcaption>
     
   </figure>
-
 
 
 
@@ -185,46 +173,40 @@ They come with lots of customization options and can be easily extended to fit y
   </figure>
 
 
-
-<p>The second screenshot goes on to show how flexible this package is, as there are multiple widgets packed together there and managing each is interesting, but we&rdquo;ll get there later.</p>
-
+<p>The second screenshot goes on to show how flexible this package is, as there are multiple widgets packed together there and managing each is interesting, but we'&lsquo;ll get there later.</p>
 <h2 id="basics">Basics</h2>
+<p>Now, let's take a quick look at how a typical TUI written with <code>tview</code> looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<p>Now, let&rsquo;s take a quick look at how a typical TUI written with <code>tview</code> looks like:</p>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;github.com/rivo/tview&#34;</span>
 
-<pre><code class="language-go">package main
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> (
+		<span style="color:#75715e">// An appplication is the object in charge of containing all the
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// widgets, and controlling the drawing
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">app</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewApplication</span>()
 
-import &quot;github.com/rivo/tview&quot;
-
-func main() {
-	var (
-		// An appplication is the object in charge of containing all the
-		// widgets, and controlling the drawing
-		app = tview.NewApplication()
-
-		// A very simple widget, just a button
-		button = tview.NewButton(&quot;Button&quot;)
+		<span style="color:#75715e">// A very simple widget, just a button
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">button</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewButton</span>(<span style="color:#e6db74">&#34;Button&#34;</span>)
 	)
 
-	// Set some parameters, like showing the border and the position of
-	// the widget, and you can chain these together
-	button.SetBorder(true).SetRect(20, 10, 25, 5)
+	<span style="color:#75715e">// Set some parameters, like showing the border and the position of
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// the widget, and you can chain these together
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">SetBorder</span>(<span style="color:#66d9ef">true</span>).<span style="color:#a6e22e">SetRect</span>(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">5</span>)
 
-	// Make the button the main widget, and don't put it on fullscreen
-	app.SetRoot(button, false)
+	<span style="color:#75715e">// Make the button the main widget, and don&#39;t put it on fullscreen
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">SetRoot</span>(<span style="color:#a6e22e">button</span>, <span style="color:#66d9ef">false</span>)
 
-	// Make the button be selected when starting the program
-	app.SetFocus(button)
+	<span style="color:#75715e">// Make the button be selected when starting the program
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">SetFocus</span>(<span style="color:#a6e22e">button</span>)
 
-	// Run it!
-	err := app.Run()
-	if err != nil {
-		panic(err)
+	<span style="color:#75715e">// Run it!
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Run</span>()
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
 	}
 }
-</code></pre>
-
-<p>Try to run it and you should get this:
+</code></pre></div><p>Try to run it and you should get this:
 
   <figure class="center" >
     <img src="/img/tview2.png"  alt="index"   style="border-radius: 0px;"  />
@@ -232,51 +214,33 @@ func main() {
   </figure>
 
 </p>
-
-<p>Looks great! Now let&rsquo;s see how we can add functionality to the button - for example, make it close the program when we hit <code>Enter</code>.</p>
-
+<p>Looks great! Now let's see how we can add functionality to the button - for example, make it close the program when we hit <code>Enter</code>.</p>
 <h2 id="connecting-widgets-to-actions">Connecting widgets to actions</h2>
-
-<p>If you&rsquo;ve worked with GTK, you&rsquo;ll be familiar with the concept of signals, and since Go has great support for first-class functions, we can do something similar in <code>tview</code>. Most widgets have a <code>SetSelectedFunc</code> method that will take a function as a parameter and execute it each time you select it. Such function can be defined properly or we can create an anonymous function right in the spot:
-It&rsquo;s based on the excellent and thorough tcell, and it&rsquo;s certainly customizable - I&rsquo;ve used it to build Index&rsquo;s interface:</p>
-
-<pre><code class="language-go">button.SetSelectedFunc(func() {
-		app.Stop()
+<p>If you've worked with GTK, you'll be familiar with the concept of signals, and since Go has great support for first-class functions, we can do something similar in <code>tview</code>. Most widgets have a <code>SetSelectedFunc</code> method that will take a function as a parameter and execute it each time you select it. Such function can be defined properly or we can create an anonymous function right in the spot:
+It's based on the excellent and thorough tcell, and it's certainly customizable - I've used it to build Index's interface:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">SetSelectedFunc</span>(<span style="color:#66d9ef">func</span>() {
+		<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Stop</span>()
 	})
-</code></pre>
-
-<p>Notice that since this is a closure, it has access to variables from the block in which it was created. If we were to put this functionality inside a separate function, we&rsquo;d need to make <code>app</code> a global variable.</p>
-
+</code></pre></div><p>Notice that since this is a closure, it has access to variables from the block in which it was created. If we were to put this functionality inside a separate function, we'd need to make <code>app</code> a global variable.</p>
 <h2 id="keybindings">Keybindings</h2>
-
 <p>We can customize the bindings for either the whole application or a specific widget, but keep in mind that we cannot override the ones we set in the former with new ones in the latter, nor those that come as default in a more complex widget, like Form.</p>
-
-<p>Usually, <code>tview</code> stops the application when hitting <code>Ctrl-C</code>, but let&rsquo;s say we also want to assign <code>Esc</code> to that. For such, we have to import <code>tcell</code>, which will help us handle events from the keyboard, and call the application&rsquo;s <code>SetInputCapture</code> method with a function that receives these events, and acts on them.</p>
-
-<pre><code class="language-go">app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyEsc {
-			app.Stop()
+<p>Usually, <code>tview</code> stops the application when hitting <code>Ctrl-C</code>, but let's say we also want to assign <code>Esc</code> to that. For such, we have to import <code>tcell</code>, which will help us handle events from the keyboard, and call the application's <code>SetInputCapture</code> method with a function that receives these events, and acts on them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">SetInputCapture</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">event</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">EventKey</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">EventKey</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">Key</span>() <span style="color:#f92672">==</span> <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">KeyEsc</span> {
+			<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Stop</span>()
 		}
-		return event
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">event</span>
 	})
-</code></pre>
-
-<p>You can also check for individual letters:</p>
-
-<pre><code class="language-go">switch event.Rune() {
-case 'j':
-    foo()
-case 'h', 'l':
-    bar()
+</code></pre></div><p>You can also check for individual letters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">Rune</span>() {
+<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;j&#39;</span>:
+    <span style="color:#a6e22e">foo</span>()
+<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;h&#39;</span>, <span style="color:#e6db74">&#39;l&#39;</span>:
+    <span style="color:#a6e22e">bar</span>()
 }
-</code></pre>
-
-<p>For more information about the key events accepted by <code>tcell</code>, I recommend checking the <a href="http://godoc.org/github.com/gdamore/tcell">documentation</a>.</p>
-
+</code></pre></div><p>For more information about the key events accepted by <code>tcell</code>, I recommend checking the <a href="http://godoc.org/github.com/gdamore/tcell">documentation</a>.</p>
 <h1 id="building-something">Building something</h1>
-
-<p>For the mere purposes of this tutorial, I ended up building a small clone of ranger that only moves between directories, but has colors, and a similar UI. Notice that it&rsquo;s not really usable and only acts as a way to showcase the posibilities of <code>tview</code>. You can also find it in a repo <a href="https://gitlab.com/Sacules/goranger">here</a>.</p>
-
+<p>For the mere purposes of this tutorial, I ended up building a small clone of ranger that only moves between directories, but has colors, and a similar UI. Notice that it's not really usable and only acts as a way to showcase the posibilities of <code>tview</code>. You can also find it in a repo <a href="https://gitlab.com/Sacules/goranger">here</a>.</p>
 
   <figure class="center" >
     <img src="/img/goranger.png"  alt="index"   style="border-radius: 0px;"  />
@@ -286,331 +250,335 @@ case 'h', 'l':
   </figure>
 
 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+	<span style="color:#e6db74">&#34;path/filepath&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
 
-import (
-	&quot;fmt&quot;
-	&quot;io/ioutil&quot;
-	&quot;os&quot;
-	&quot;path/filepath&quot;
-	&quot;time&quot;
-
-	&quot;github.com/dustin/go-humanize&quot;
-	&quot;github.com/gdamore/tcell&quot;
-	&quot;github.com/rivo/tview&quot;
+	<span style="color:#e6db74">&#34;github.com/dustin/go-humanize&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/gdamore/tcell&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/rivo/tview&#34;</span>
 )
 
-var (
-	// Global channel to send the current directory to
-	cwdch = make(chan string)
+<span style="color:#66d9ef">var</span> (
+	<span style="color:#75715e">// Global channel to send the current directory to
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cwdch</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>)
 
-	// Global channel to send info about the current file, and
-	// general status updates. Has to be buffered else the program
-	// enters a deadlock for some reason
-	statusch = make(chan string, 1)
+	<span style="color:#75715e">// Global channel to send info about the current file, and
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// general status updates. Has to be buffered else the program
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// enters a deadlock for some reason
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">statusch</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">1</span>)
 )
 
-func main() {
-	var (
-		// Main application
-		app = tview.NewApplication()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> (
+		<span style="color:#75715e">// Main application
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">app</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewApplication</span>()
 
-		// Using a Grid layout allows us to put many primitives next to
-		// each other and have them respond to the terminal size
-		mainview = tview.NewGrid()
+		<span style="color:#75715e">// Using a Grid layout allows us to put many primitives next to
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// each other and have them respond to the terminal size
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">mainview</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewGrid</span>()
 
-		// Show the files and directories inside the current, previous,
-		// and next directory panels
-		previousdir = tview.NewTable()
-		currentdir  = tview.NewTable()
-		nextdir     = tview.NewTable()
+		<span style="color:#75715e">// Show the files and directories inside the current, previous,
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// and next directory panels
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">previousdir</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTable</span>()
+		<span style="color:#a6e22e">currentdir</span>  = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTable</span>()
+		<span style="color:#a6e22e">nextdir</span>     = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTable</span>()
 
-		// Small title showing the whole directory name
-		cwd = tview.NewTextView()
+		<span style="color:#75715e">// Small title showing the whole directory name
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">cwd</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTextView</span>()
 
-		// Simple status bar showing current file permissions and other info
-		fileinfo = tview.NewTextView()
+		<span style="color:#75715e">// Simple status bar showing current file permissions and other info
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fileinfo</span> = <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTextView</span>()
 	)
 
-	// Init widgets
-	initPanels(previousdir, currentdir, nextdir, app)
-	initDirTitle(cwd, app)
-	initFileInfo(fileinfo, app)
+	<span style="color:#75715e">// Init widgets
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">initPanels</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#a6e22e">currentdir</span>, <span style="color:#a6e22e">nextdir</span>, <span style="color:#a6e22e">app</span>)
+	<span style="color:#a6e22e">initDirTitle</span>(<span style="color:#a6e22e">cwd</span>, <span style="color:#a6e22e">app</span>)
+	<span style="color:#a6e22e">initFileInfo</span>(<span style="color:#a6e22e">fileinfo</span>, <span style="color:#a6e22e">app</span>)
 
-	// Set our mainview to resemble ranger
-	mainview.
-		SetBorders(true).
-		SetColumns(10, 0, 40).
-		SetRows(1, 0, 1)
+	<span style="color:#75715e">// Set our mainview to resemble ranger
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">mainview</span>.
+		<span style="color:#a6e22e">SetBorders</span>(<span style="color:#66d9ef">true</span>).
+		<span style="color:#a6e22e">SetColumns</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">40</span>).
+		<span style="color:#a6e22e">SetRows</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
 
-	// Add the widgets
-	mainview.
-		AddItem(cwd, 0, 0, 1, 3, 1, 1, false).
-		AddItem(previousdir, 1, 0, 1, 1, 1, 1, false).
-		AddItem(currentdir, 1, 1, 1, 1, 1, 1, false).
-		AddItem(nextdir, 1, 2, 1, 1, 1, 1, false).
-		AddItem(fileinfo, 2, 0, 1, 3, 1, 1, true)
+	<span style="color:#75715e">// Add the widgets
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">mainview</span>.
+		<span style="color:#a6e22e">AddItem</span>(<span style="color:#a6e22e">cwd</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">false</span>).
+		<span style="color:#a6e22e">AddItem</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">false</span>).
+		<span style="color:#a6e22e">AddItem</span>(<span style="color:#a6e22e">currentdir</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">false</span>).
+		<span style="color:#a6e22e">AddItem</span>(<span style="color:#a6e22e">nextdir</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">false</span>).
+		<span style="color:#a6e22e">AddItem</span>(<span style="color:#a6e22e">fileinfo</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">true</span>)
 
-	// Make the mainview the root widget, and fullscreen it
-	app.SetRoot(mainview, true)
+	<span style="color:#75715e">// Make the mainview the root widget, and fullscreen it
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">SetRoot</span>(<span style="color:#a6e22e">mainview</span>, <span style="color:#66d9ef">true</span>)
 
-	// Focus on the directory we are in
-	app.SetFocus(currentdir)
+	<span style="color:#75715e">// Focus on the directory we are in
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">SetFocus</span>(<span style="color:#a6e22e">currentdir</span>)
 
-	// Run the application
-	err := app.Run()
-	if err != nil {
-		panic(err)
+	<span style="color:#75715e">// Run the application
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Run</span>()
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
 	}
 }
 
-// Preparation to properly initialize each panel upon start
-func initPanels(previousdir, currentdir, nextdir *tview.Table, app *tview.Application) {
-	// Make each selectable
-	previousdir.SetSelectable(true, false)
-	currentdir.SetSelectable(true, false)
-	nextdir.SetSelectable(true, false)
+<span style="color:#75715e">// Preparation to properly initialize each panel upon start
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initPanels</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#a6e22e">currentdir</span>, <span style="color:#a6e22e">nextdir</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Table</span>, <span style="color:#a6e22e">app</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Application</span>) {
+	<span style="color:#75715e">// Make each selectable
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">previousdir</span>.<span style="color:#a6e22e">SetSelectable</span>(<span style="color:#66d9ef">true</span>, <span style="color:#66d9ef">false</span>)
+	<span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">SetSelectable</span>(<span style="color:#66d9ef">true</span>, <span style="color:#66d9ef">false</span>)
+	<span style="color:#a6e22e">nextdir</span>.<span style="color:#a6e22e">SetSelectable</span>(<span style="color:#66d9ef">true</span>, <span style="color:#66d9ef">false</span>)
 
-	// Get the files and dirs of the current and previous directory
-	getDirContents(previousdir, &quot;..&quot;)
-	getDirContents(currentdir, &quot;.&quot;)
+	<span style="color:#75715e">// Get the files and dirs of the current and previous directory
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">getDirContents</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#e6db74">&#34;..&#34;</span>)
+	<span style="color:#a6e22e">getDirContents</span>(<span style="color:#a6e22e">currentdir</span>, <span style="color:#e6db74">&#34;.&#34;</span>)
 
-	// Define the function to be called each time we move to a new file or dir
-	preview := func(row, column int) {
-		currentselect := currentdir.GetCell(row, 0).Text
-		previewDir(currentselect, nextdir)
+	<span style="color:#75715e">// Define the function to be called each time we move to a new file or dir
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">preview</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">row</span>, <span style="color:#a6e22e">column</span> <span style="color:#66d9ef">int</span>) {
+		<span style="color:#a6e22e">currentselect</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">GetCell</span>(<span style="color:#a6e22e">row</span>, <span style="color:#ae81ff">0</span>).<span style="color:#a6e22e">Text</span>
+		<span style="color:#a6e22e">previewDir</span>(<span style="color:#a6e22e">currentselect</span>, <span style="color:#a6e22e">nextdir</span>)
 	}
 
-	// Use it on the first item
-	preview(0, 0)
+	<span style="color:#75715e">// Use it on the first item
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">preview</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
 
-	// Install it
-	currentdir.SetSelectionChangedFunc(preview)
+	<span style="color:#75715e">// Install it
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">SetSelectionChangedFunc</span>(<span style="color:#a6e22e">preview</span>)
 
-	// Moving between dirs, and exiting
-	currentdir.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		switch event.Rune() {
-		case 'h':
-			// Move up
-			err := os.Chdir(&quot;..&quot;)
-			printError(err)
+	<span style="color:#75715e">// Moving between dirs, and exiting
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">SetInputCapture</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">event</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">EventKey</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">EventKey</span> {
+		<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">Rune</span>() {
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;h&#39;</span>:
+			<span style="color:#75715e">// Move up
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Chdir</span>(<span style="color:#e6db74">&#34;..&#34;</span>)
+			<span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span>)
 
-			copyDirToPanel(currentdir, nextdir)
-			copyDirToPanel(previousdir, currentdir)
-			getDirContents(previousdir, &quot;..&quot;)
+			<span style="color:#a6e22e">copyDirToPanel</span>(<span style="color:#a6e22e">currentdir</span>, <span style="color:#a6e22e">nextdir</span>)
+			<span style="color:#a6e22e">copyDirToPanel</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#a6e22e">currentdir</span>)
+			<span style="color:#a6e22e">getDirContents</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#e6db74">&#34;..&#34;</span>)
 
-			// Update directory bar
-			printCwd()
+			<span style="color:#75715e">// Update directory bar
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">printCwd</span>()
 
-		case 'l':
-			// Move into a dir
-			r, _ := currentdir.GetSelection()
-			currentItem := currentdir.GetCell(r, 0).Text
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;l&#39;</span>:
+			<span style="color:#75715e">// Move into a dir
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">GetSelection</span>()
+			<span style="color:#a6e22e">currentItem</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">GetCell</span>(<span style="color:#a6e22e">r</span>, <span style="color:#ae81ff">0</span>).<span style="color:#a6e22e">Text</span>
 
-			// Get info about the current item
-			fi, err := os.Stat(currentItem)
-			printError(err)
+			<span style="color:#75715e">// Get info about the current item
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">fi</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stat</span>(<span style="color:#a6e22e">currentItem</span>)
+			<span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span>)
 
-			if fi.IsDir() {
-				err = os.Chdir(currentItem)
-				printError(err)
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">IsDir</span>() {
+				<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Chdir</span>(<span style="color:#a6e22e">currentItem</span>)
+				<span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span>)
 
-				copyDirToPanel(currentdir, previousdir)
-				copyDirToPanel(nextdir, currentdir)
-				preview(0, 0)
+				<span style="color:#a6e22e">copyDirToPanel</span>(<span style="color:#a6e22e">currentdir</span>, <span style="color:#a6e22e">previousdir</span>)
+				<span style="color:#a6e22e">copyDirToPanel</span>(<span style="color:#a6e22e">nextdir</span>, <span style="color:#a6e22e">currentdir</span>)
+				<span style="color:#a6e22e">preview</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
 			}
 
-			// Update directory bar
-			printCwd()
+			<span style="color:#75715e">// Update directory bar
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">printCwd</span>()
 
-		case 'q':
-			app.Stop()
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;q&#39;</span>:
+			<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Stop</span>()
 		}
 
-		return event
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">event</span>
 	})
 }
 
-func initFileInfo(fi *tview.TextView, app *tview.Application) {
-	// Display colors given by text
-	fi.SetDynamicColors(true)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initFileInfo</span>(<span style="color:#a6e22e">fi</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">TextView</span>, <span style="color:#a6e22e">app</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Application</span>) {
+	<span style="color:#75715e">// Display colors given by text
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">SetDynamicColors</span>(<span style="color:#66d9ef">true</span>)
 
-	// Constantly check and print file permissions etc
-	go func() {
-		var info string
+	<span style="color:#75715e">// Constantly check and print file permissions etc
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">info</span> <span style="color:#66d9ef">string</span>
 
-		for {
-			info = &lt;-statusch
+		<span style="color:#66d9ef">for</span> {
+			<span style="color:#a6e22e">info</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">statusch</span>
 
-			fi.SetText(info)
+			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">SetText</span>(<span style="color:#a6e22e">info</span>)
 
-			app.Draw()
+			<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Draw</span>()
 		}
 	}()
 }
 
-func initDirTitle(cwd *tview.TextView, app *tview.Application) {
-	// Make the title blue and accept colors
-	cwd.SetDynamicColors(true)
-	cwd.SetTextColor(tcell.ColorBlue)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initDirTitle</span>(<span style="color:#a6e22e">cwd</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">TextView</span>, <span style="color:#a6e22e">app</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Application</span>) {
+	<span style="color:#75715e">// Make the title blue and accept colors
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cwd</span>.<span style="color:#a6e22e">SetDynamicColors</span>(<span style="color:#66d9ef">true</span>)
+	<span style="color:#a6e22e">cwd</span>.<span style="color:#a6e22e">SetTextColor</span>(<span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorBlue</span>)
 
-	// Get initial dir
-	wd, err := os.Getwd()
-	printError(err)
+	<span style="color:#75715e">// Get initial dir
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">wd</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getwd</span>()
+	<span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span>)
 
-	// Check and print info about the current dir
-	go func() {
-		var dir string
+	<span style="color:#75715e">// Check and print info about the current dir
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">dir</span> <span style="color:#66d9ef">string</span>
 
-		for {
-			dir = &lt;-cwdch
+		<span style="color:#66d9ef">for</span> {
+			<span style="color:#a6e22e">dir</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">cwdch</span>
 
-			cwd.SetText(&quot;[::b]&quot; + filepath.Dir(dir) + &quot;/[white]&quot; + filepath.Base(dir))
+			<span style="color:#a6e22e">cwd</span>.<span style="color:#a6e22e">SetText</span>(<span style="color:#e6db74">&#34;[::b]&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Dir</span>(<span style="color:#a6e22e">dir</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/[white]&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Base</span>(<span style="color:#a6e22e">dir</span>))
 
-			app.Draw()
+			<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">Draw</span>()
 		}
 	}()
 
-	cwdch &lt;- wd
+	<span style="color:#a6e22e">cwdch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">wd</span>
 }
 
-func copyDirToPanel(previousdir, currentdir *tview.Table) {
-	// Make sure there are no elements in the panel
-	currentdir.Clear()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">copyDirToPanel</span>(<span style="color:#a6e22e">previousdir</span>, <span style="color:#a6e22e">currentdir</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Table</span>) {
+	<span style="color:#75715e">// Make sure there are no elements in the panel
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">Clear</span>()
 
-	for i := 0; i &lt; previousdir.GetRowCount(); i++ {
-		currentdir.SetCell(i, 0, previousdir.GetCell(i, 0))
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">previousdir</span>.<span style="color:#a6e22e">GetRowCount</span>(); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">currentdir</span>.<span style="color:#a6e22e">SetCell</span>(<span style="color:#a6e22e">i</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">previousdir</span>.<span style="color:#a6e22e">GetCell</span>(<span style="color:#a6e22e">i</span>, <span style="color:#ae81ff">0</span>))
 	}
 }
 
-func previewDir(path string, paneldir *tview.Table) {
-	// Clean the panel
-	paneldir.Clear()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">previewDir</span>(<span style="color:#a6e22e">path</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">paneldir</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Table</span>) {
+	<span style="color:#75715e">// Clean the panel
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">paneldir</span>.<span style="color:#a6e22e">Clear</span>()
 
-	// Get info about the given path
-	fi, err := os.Stat(path)
-	if err != nil {
-		return
+	<span style="color:#75715e">// Get info about the given path
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fi</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stat</span>(<span style="color:#a6e22e">path</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span>
 	}
 
-	if fi.IsDir() {
-		getDirContents(paneldir, path)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">IsDir</span>() {
+		<span style="color:#a6e22e">getDirContents</span>(<span style="color:#a6e22e">paneldir</span>, <span style="color:#a6e22e">path</span>)
 	}
 
-	// Send info about the current file
-	statusch &lt;- fmt.Sprintf(&quot;[fuchsia]%s[white]\t%s\t%s&quot;,
-		fi.Mode().String(),
-		fi.ModTime().Round(time.Second).String(),
-		humanize.Bytes(uint64(fi.Size())))
+	<span style="color:#75715e">// Send info about the current file
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">statusch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;[fuchsia]%s[white]\t%s\t%s&#34;</span>,
+		<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Mode</span>().<span style="color:#a6e22e">String</span>(),
+		<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">ModTime</span>().<span style="color:#a6e22e">Round</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>).<span style="color:#a6e22e">String</span>(),
+		<span style="color:#a6e22e">humanize</span>.<span style="color:#a6e22e">Bytes</span>(uint64(<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Size</span>())))
 }
 
-func getDirContents(dirtable *tview.Table, path string) {
-	// Make sure to the table is empty
-	dirtable.Clear()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getDirContents</span>(<span style="color:#a6e22e">dirtable</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">Table</span>, <span style="color:#a6e22e">path</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#75715e">// Make sure to the table is empty
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">dirtable</span>.<span style="color:#a6e22e">Clear</span>()
 
-	// Get the contents of the directory
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		return
+	<span style="color:#75715e">// Get the contents of the directory
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadDir</span>(<span style="color:#a6e22e">path</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">return</span>
 	}
 
-	for i, f := range files {
-		var color = tcell.ColorWhite
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">f</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">files</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorWhite</span>
 
-		// Create a new cell for the table, and make sure it takes up
-		// all the horizontal space
-		cell := tview.NewTableCell(f.Name())
-		cell.SetExpansion(1)
+		<span style="color:#75715e">// Create a new cell for the table, and make sure it takes up
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// all the horizontal space
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">cell</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tview</span>.<span style="color:#a6e22e">NewTableCell</span>(<span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">Name</span>())
+		<span style="color:#a6e22e">cell</span>.<span style="color:#a6e22e">SetExpansion</span>(<span style="color:#ae81ff">1</span>)
 
-		// Colorize according to extension and mode
-		if f.IsDir() {
-			color = tcell.ColorNavy
-			cell.SetAttributes(tcell.AttrBold)
+		<span style="color:#75715e">// Colorize according to extension and mode
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">IsDir</span>() {
+			<span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorNavy</span>
+			<span style="color:#a6e22e">cell</span>.<span style="color:#a6e22e">SetAttributes</span>(<span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">AttrBold</span>)
 		}
 
-		switch filepath.Ext(f.Name()) {
-		case &quot;.png&quot;, &quot;.jpg&quot;:
-			color = tcell.ColorYellow
+		<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Ext</span>(<span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">Name</span>()) {
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;.png&#34;</span>, <span style="color:#e6db74">&#34;.jpg&#34;</span>:
+			<span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorYellow</span>
 
-		case &quot;.mp4&quot;, &quot;.mkv&quot;, &quot;.avi&quot;, &quot;.webm&quot;, &quot;.mp3&quot;, &quot;.m4a&quot;, &quot;.flac&quot;:
-			color = tcell.ColorFuchsia
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;.mp4&#34;</span>, <span style="color:#e6db74">&#34;.mkv&#34;</span>, <span style="color:#e6db74">&#34;.avi&#34;</span>, <span style="color:#e6db74">&#34;.webm&#34;</span>, <span style="color:#e6db74">&#34;.mp3&#34;</span>, <span style="color:#e6db74">&#34;.m4a&#34;</span>, <span style="color:#e6db74">&#34;.flac&#34;</span>:
+			<span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorFuchsia</span>
 
-		case &quot;.zip&quot;, &quot;.gz&quot;, &quot;.iso&quot;:
-			color = tcell.ColorRed
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;.zip&#34;</span>, <span style="color:#e6db74">&#34;.gz&#34;</span>, <span style="color:#e6db74">&#34;.iso&#34;</span>:
+			<span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorRed</span>
 		}
 
-		if f.Mode()&amp;os.ModeSymlink != 0 {
-			color = tcell.ColorTeal
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">Mode</span>()<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">ModeSymlink</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">color</span> = <span style="color:#a6e22e">tcell</span>.<span style="color:#a6e22e">ColorTeal</span>
 		}
 
-		cell.SetTextColor(color)
+		<span style="color:#a6e22e">cell</span>.<span style="color:#a6e22e">SetTextColor</span>(<span style="color:#a6e22e">color</span>)
 
-		// Add it to the table on the i row, first column
-		dirtable.SetCell(i, 0, cell)
+		<span style="color:#75715e">// Add it to the table on the i row, first column
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">dirtable</span>.<span style="color:#a6e22e">SetCell</span>(<span style="color:#a6e22e">i</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">cell</span>)
 	}
 }
 
-func printCwd() {
-	dir, err := os.Getwd()
-	printError(err)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printCwd</span>() {
+	<span style="color:#a6e22e">dir</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getwd</span>()
+	<span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span>)
 
-	cwdch &lt;- dir
+	<span style="color:#a6e22e">cwdch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dir</span>
 }
 
-func printError(err error) {
-	if err != nil {
-		statusch &lt;- fmt.Sprintf(&quot;[red]%s&quot;, err)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">statusch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;[red]%s&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
 }
-</code></pre>
-
-<p>The code is mostly simple, but the whole navigation logic is imperfect and riddled with edge cases. It&rsquo;d be interesting to completely rewrite it to generate a new <code>Table</code> each time we move between dirs and just traverse that, pretty much building a tree, so cursor positions remain where they were. It could also implement swapping the right panel with a <code>TextView</code> that shows the output of <code>file</code> if the current item is a binary, or printing part of the file if it&rsquo;s text (might also be able to parse if it&rsquo;s code, and use a syntax highlight package), etc.</p>
-
+</code></pre></div><p>The code is mostly simple, but the whole navigation logic is imperfect and riddled with edge cases. It'd be interesting to completely rewrite it to generate a new <code>Table</code> each time we move between dirs and just traverse that, pretty much building a tree, so cursor positions remain where they were. It could also implement swapping the right panel with a <code>TextView</code> that shows the output of <code>file</code> if the current item is a binary, or printing part of the file if it's text (might also be able to parse if it's code, and use a syntax highlight package), etc.</p>
 <p>Building a featureful, thorough file manager is a complex task, and although there are plenty around (<code>mc</code>, <code>lf</code>, <code>nnn</code>, <code>fff</code>, <code>ranger</code>, <code>vimfm</code>, etc.), it should be a challenging and fun experience.</p>
 
     </div>
     
-      <div class="pagination">
-        <div class="pagination__title">
-          <span class="pagination__title-h">Read other posts</span>
-          <hr />
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://sacules.github.io/post/how-to-lemonbar/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">How to Lemonbar</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="https://sacules.github.io/post/void-journey-i/">
+                  <span class="button__text">Void Linux Journey, Part I: Automounting</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
         </div>
-        <div class="pagination__buttons">
-          
-            <span class="button previous">
-              <a href="https://sacules.github.io/post/how-to-lemonbar/">
-                <span class="button__icon">←</span>
-                <span class="button__text">How to Lemonbar</span>
-              </a>
-            </span>
-          
-          
-            <span class="button next">
-              <a href="https://sacules.github.io/post/void-journey-i/">
-                <span class="button__text">Void Linux Journey, Part I: Automounting</span>
-                <span class="button__icon">→</span>
-              </a>
-            </span>
-          
-        </div>
-      </div>
+      
+    
     
 
     
+      
+        
 
+      
+    
+    
     </div>
 
-  </div>
+      </div>
 
-  
-    <footer class="footer">
+      
+        <footer class="footer">
   <div class="footer__inner">
     
       <a href="https://sacules.github.io/" class="logo" style="text-decoration: none;">
   
-    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
-  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
 </svg>
 </span>
     <span class="logo__text">kernel_ashes</span>
@@ -619,7 +587,7 @@ func printError(err error) {
 </a>
 
       <div class="copyright">
-        <span>© 2019 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
         <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
       </div>
     
@@ -630,8 +598,9 @@ func printError(err error) {
 <script src="https://sacules.github.io/assets/prism.js"></script>
 
 
-  
-</div>
+      
+    </div>
 
-</body>
+    
+  </body>
 </html>
